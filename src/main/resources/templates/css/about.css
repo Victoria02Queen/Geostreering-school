@@ -1,0 +1,58 @@
+body{
+    background-color:#FFF;
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-size:16px;
+    line-height:18px;
+    color:#777;
+}
+
+a {
+    color: #aa0a5f;
+}
+h1, h2, h3,
+h4, h5, h6 {
+    color: #333;
+    margin:0;
+    font-weight: normal;
+}
+.banner-area .overlay {
+    background: #000;
+    opacity: .4;
+}
+.overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.col-lg-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.banner-content h1 {
+    color: #fff;
+    font-size: 72px;
+    font-weight: 100;
+    line-height: 1em;
+    margin-bottom: 40px;
+}
+h1 { font-size: 28px;}
+.section-content {
+    font-size: 16px;
+    line-height: 25px;
+}
+
+.section-content li {
+    margin-bottom: 15px;
+}
+
+.section-content a:hover {
+    text-decoration: underline;
+}
+
+.script-source li {
+    list-style: square outside none;
+    margin-bottom: 10px;
+}
