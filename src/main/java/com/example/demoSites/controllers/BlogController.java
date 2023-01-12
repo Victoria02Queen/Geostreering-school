@@ -1,6 +1,7 @@
 package com.example.demoSites.controllers;
 
 
+import com.example.demoSites.Services.TrainingService;
 import com.example.demoSites.models.Training;
 import com.example.demoSites.repo.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import java.util.Optional;
 public class BlogController {
     @Autowired
     public TrainingRepository trainingRepository;
+    @Autowired
+    public TrainingService trainingService;
 
     @GetMapping("/blog")
     public String blogMain(Model model){
@@ -31,10 +34,10 @@ public class BlogController {
     }
 
     @PostMapping("/blog/add")
-    public String blogPostAdd(@RequestParam String title, @RequestParam String description, @RequestParam String trainer, Model model){
-        Training training = new Training(title, description, trainer);
+    public String blogPostAdd(@RequestParam String title, @RequestParam String description, @RequestParam String trainer, @RequestParam Integer countPlace, Model model){
+        Training training = new Training(title, description, trainer, countPlace);
         if (training.getTitle().isEmpty()){
-            return "erors";
+            return "errors";
         } else {
             trainingRepository.save(training);
             return "redirect:/blog";
@@ -65,11 +68,12 @@ public class BlogController {
     }
 
     @PostMapping("/blog/{id}/edit")
-    public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String description, @RequestParam String trainer, Model model){
+    public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String description, @RequestParam String trainer, @RequestParam Integer countPlace, Model model){
        Training training = trainingRepository.findById(id).orElseThrow();
        training.setTitle(title);
        training.setDescription(description);
        training.setTrainer(trainer);
+       training.setCountPlace(countPlace);
        trainingRepository.save(training);
         return "redirect:/blog";
     }

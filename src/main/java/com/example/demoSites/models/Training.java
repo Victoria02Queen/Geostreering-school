@@ -1,6 +1,10 @@
 package com.example.demoSites.models;
 
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Training {
@@ -11,12 +15,23 @@ public class Training {
     private String title;
     private String description;
     private String trainer;
+    private Integer countPlace;
 
-    public Training(String title, String description, String trainer) {
+    public Training(String title, String description, String trainer, Integer countPlace) {
         this.title = title;
         this.description = description;
         this.trainer = trainer;
+        this.countPlace = countPlace;
     }
+
+    public Integer getCountPlace() {
+        return countPlace;
+    }
+
+    public void setCountPlace(Integer countPlace) {
+        this.countPlace = countPlace;
+    }
+
 
     public Training() {
     }
@@ -52,4 +67,15 @@ public class Training {
     public void setId(Long id) {
         this.id = id;
     }
+    @Override
+    public String toString() {
+        return "Training{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", trainer='" + trainer + '\'' +
+                ", countPlace=" + countPlace +
+                '}';
+    }
+
 }

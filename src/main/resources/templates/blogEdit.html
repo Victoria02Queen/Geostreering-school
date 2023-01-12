@@ -14,6 +14,7 @@
             <input type="text" th:value="${el.title}" name="title" placeholder="Название тренинга" class="form-control"><br>
             <textarea name="description"  placeholder="Описание тренинга" class="form-control" th:text="${el.description}"/> <br>
             <input type="text" th:value="${el.trainer}" name="trainer" placeholder="ФИО тренера" class="form-control"><br>
+            <input type="text" th:value="${el.countPlace}" name="countPlace" placeholder="Количество свободных мест" class="form-control"><br>
             <button type="submit" class="btn btn-light">Обновить</button>
         </form>
         <br>
