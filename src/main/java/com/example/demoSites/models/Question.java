@@ -11,7 +11,7 @@ public class Question {
     private Long id;
 
     private String question;
-    private Long testId;
+
 
     @OneToMany()
     private ArrayList<Answer> answers;

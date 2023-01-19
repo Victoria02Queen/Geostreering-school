@@ -15,6 +15,14 @@ public class Test {
     public Test() {
     }
 
+    public ArrayList<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(ArrayList<Question> questions) {
+        this.questions = questions;
+    }
+
     public Long getId() {
         return id;
     }

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class MainController {
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String mainPage(Model model) {
         model.addAttribute("title","Главная страница");
-        return "home";
+        return "mainPage";
     }
 
 }

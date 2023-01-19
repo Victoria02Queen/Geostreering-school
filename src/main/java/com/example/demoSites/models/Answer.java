@@ -10,7 +10,6 @@ public class Answer {
 
     private String title;
     private boolean isCorrect;
-    private Long questionId;
 
     public Answer() {
     }
