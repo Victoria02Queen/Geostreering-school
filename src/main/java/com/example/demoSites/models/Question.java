@@ -3,6 +3,7 @@ package com.example.demoSites.models;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Question {
@@ -13,8 +14,8 @@ public class Question {
     private String question;
 
 
-    @OneToMany()
-    private ArrayList<Answer> answers;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Answer> answers;
 
     public Question() {
     }
@@ -35,11 +36,11 @@ public class Question {
         this.question = question;
     }
 
-    public ArrayList<Answer> getAnswers() {
+    public List<Answer> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(ArrayList<Answer> answers) {
+    public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
 

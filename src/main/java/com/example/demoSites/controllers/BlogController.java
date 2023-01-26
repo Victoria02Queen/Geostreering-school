@@ -28,6 +28,12 @@ public class BlogController {
         model.addAttribute("title","Страница авторизации");
         return "logIn";
     }
+
+    @GetMapping("/blog/addTest")
+    public String addTest(Model model) {
+        model.addAttribute("title","Добавление естирования");
+        return "addTest";
+    }
     @GetMapping("/signUp")
     public String signUp(Model model) {
         model.addAttribute("title","Страница регистрации");

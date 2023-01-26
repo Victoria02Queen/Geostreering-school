@@ -9,7 +9,7 @@ public class Answer {
     private Long id;
 
     private String title;
-    private boolean isCorrect;
+    private Boolean correct;
 
     public Answer() {
     }
@@ -30,12 +30,12 @@ public class Answer {
         this.title = title;
     }
 
-    public boolean isCorrect() {
-        return isCorrect;
+    public Boolean getCorrect() {
+        return correct;
     }
 
-    public void setCorrect(boolean correct) {
-        isCorrect = correct;
+    public void setCorrect(Boolean correct) {
+        this.correct = correct;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Answer {
         return "Answer{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", isCorrect=" + isCorrect +
+                ", correct=" + correct +
                 '}';
     }
 }
