@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<body>
+<header th:insert="blocks/header :: header "> </header>
+<main>
+    <style>
+        .heading-1{
+            font-size: 250%!important;
+            line-height: 120%!important;
+            font-family: 'IBM Plex Sans',Arial,sans-serif;
+        }
+        .tx1{
+            font-size: 120%!important;
+            line-height: 40%!important;
+            font-family: 'IBM Plex Sans',Arial,sans-serif;
+        }
+        .bd-placeholder-img{
+             background: linear-gradient(#3d3d3f, #243b55);
+        }
+    </style>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <p>Центр дополнительного профессионального образования</p>
+                <h1  class="heading-1">«ШКОЛА ГЕОНАВИГАЦИИ» –</h1>
+                <p class="lead text-muted">это специализированный Центр
+                    дополнительного профессионального образования
+                    в сфере геологоразведки от лучших экспертов
+                    и преподавателей-практиков
+                </p>
+                <br>
+                <p>«Геология», «Геологоразведка», «Гидрогеология», «Инженерная геология»,
+                    «Техника и технологии разведки и разработки»,
+                    «Геммология», «Экология», «Бурение» и «Экономика и управление»</p>
+<!--                <p>-->
+<!--                    <a href="#" class="btn btn-primary my-2">Main call to action</a>-->
+<!--                    <a href="#" class="btn btn-secondary my-2">Secondary action</a>-->
+<!--                </p>-->
+            </div>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" >
+                            <title>Placeholder</title><rect width="100%" height="100%" fill="#55595c">
+                        </rect><text x="30%" y="50%" dy=".3em" fill="#eceeef"  class="tx1">Геология для «негеологов»</text></svg>
+
+                        <div class="card-body">
+                            <p class="card-text">Краткое описание:<br>
+                                1. Основы минерагении и металлогении<br>
+                                2. Структуры рудных полей и месторождений<br>
+                                3. Методы прогноза, поисков, оценки и разведки месторождений
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title><rect width="100%" height="100%" fill="#55595c">
+
+                        </rect><text x="30%" y="50%" fill="#eceeef" dy=".3em" class="tx1">Основы рудничной геологии</text></svg>
+
+                        <div class="card-body">
+                            <p class="card-text">Краткое описание:<br>
+                                Приобретение общих теоретических знаний и общих практических навыков в области геологии
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title><rect width="100%" height="100%" fill="#55595c">
+                        </rect><text x="30%" y="50%"  dy=".3em" class="tx1">Маркшейдерское дело</text></svg>
+                        <div class="card-body">
+                            <p class="card-text">Краткое описание:<br>
+                                1. Геологические обстановки образования рудных месторождений и типы золоторудных объектов<br>
+                                2. Современные методы прогноза, поисков, оценки и разведки месторождений твердых полезных ископаемых с примерами по месторождениям золота<br>
+                                3. Анализ вещественного состава руд золота как основа выбора способа их переработки, обогащения и геотехнологических способов разработки месторождений.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+<div th:insert="blocks/footer :: footer "></div>
+
+</body>
+</html>
