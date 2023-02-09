@@ -13,7 +13,6 @@ public class Question {
 
     private String question;
 
-
     @OneToMany(cascade = CascadeType.ALL)
     private List<Answer> answers;
 

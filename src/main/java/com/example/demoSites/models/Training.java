@@ -1,10 +1,7 @@
 package com.example.demoSites.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Training {
@@ -16,6 +13,9 @@ public class Training {
     private String description;
     private String trainer;
     private Integer countPlace;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "test_id", referencedColumnName = "id")
+    private Test test;
 
     public Training(String title, String description, String trainer, Integer countPlace) {
         this.title = title;

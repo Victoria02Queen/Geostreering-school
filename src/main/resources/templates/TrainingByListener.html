@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Блок сайта</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<body>
+    <style>
+      .mt-2{
+          color: var(--page-header-txtColor);
+          background: var(--page-header-bgColor);
+        }
+    </style>
+<div th:fragment = "header">
+  <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" fill="currentColor" class="bi bi-globe-asia-australia" viewBox="0 0 16 16" role="img">
+        <title>GEOSTEERING SCHOOL</title>
+        <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016zm6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+        <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
+      </svg>
+      <span class="fs-4">GEOSTEERING SCHOOL</span>
+    </a>
+
+    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+
+    </nav>
+  </div>
+</div>
+<style>
+  h5{
+    font-size: 120%!important;
+    line-height: 60%!important;
+    font-family: 'IBM Plex Sans',Arial,sans-serif;
+  }
+</style>
+<div class="container mt-5">
+  <h1>Тренинги</h1>
+  <div th:each="el :${trainings}" class="alert alert-secondary mt-2">
+    <h3 th:text="${el.title}"></h3><br>
+    <p th:text="${el.description}" ></p><br>
+    <h5>Тренер:</h5>
+    <p th:text="${el.trainer}" ></p>
+    <h5>Количество свободных мест:</h5>
+    <p th:text="${el.countPlace}" ></p>
+    <a  class="btn btn-light">Присоединиться</a>
+  </div>
+</div>
+
+
+</body>
+</html>

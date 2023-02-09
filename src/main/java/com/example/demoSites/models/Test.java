@@ -10,6 +10,8 @@ public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    private String title;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Question> questions;
 

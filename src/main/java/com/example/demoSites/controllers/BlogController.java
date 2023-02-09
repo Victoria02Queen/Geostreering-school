@@ -44,6 +44,11 @@ public class BlogController {
         model.addAttribute("title","Главная страница");
         return "home";
     }
+    @GetMapping("/Listener")
+    public String Listener(Model model) {
+        model.addAttribute("title","Страница слушателя");
+        return "Listener";
+    }
     @GetMapping("/blog")
     public String blogMain(Model model){
         Iterable<Training> trainings = trainingRepository.findAll();

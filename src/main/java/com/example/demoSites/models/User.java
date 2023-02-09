@@ -3,6 +3,7 @@ package com.example.demoSites.models;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -17,13 +18,28 @@ public class User {
     private String phone;
     private String email;
 
-    private String role;
-
     @OneToMany(cascade = CascadeType.ALL)
     private List<Training> trainingList;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    private List<CompletedTraining> completedTrainings;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    private Role role;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "Completed_Training",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "training_id") }
+    )
+    private Set<Training> completedTrainings;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "Active_Training",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "training_id") }
+    )
+    private Set<Training> activeTraining;
 
     public User() {
     }
@@ -76,11 +92,11 @@ public class User {
         this.email = email;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
