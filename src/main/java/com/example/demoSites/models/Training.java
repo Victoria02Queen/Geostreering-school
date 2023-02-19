@@ -6,15 +6,17 @@ import jakarta.persistence.*;
 @Entity
 public class Training {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Column(name = "id", nullable = false)
     private Long id;
     private String title;
     private String description;
     private String trainer;
+    @Column(name = "count_place")
     private Integer countPlace;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "test_id", referencedColumnName = "id")
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "test_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "training")
     private Test test;
 
     public Training(String title, String description, String trainer, Integer countPlace) {

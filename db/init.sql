@@ -49,9 +49,9 @@ CREATE TABLE training
     title VARCHAR(255),
     description VARCHAR(255),
     trainer VARCHAR(255),
-    countPlace INT
+    count_place INT
 );
-INSERT INTO training(title, description, trainer, countPlace) VALUES
+INSERT INTO training(title, description, trainer, count_place) VALUES
     (
     'Геология суши',
     'Изучение суши',

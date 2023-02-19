@@ -1,4 +1,4 @@
-package com.example.demoSites;
+package com.example.demoSites.controllers;
 
 import com.example.demoSites.models.Training;
 import com.example.demoSites.repo.TrainingRepository;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ListenerController {
-
     @Autowired
     public TrainingRepository trainingRepository;
     @GetMapping("/Training")

@@ -1,30 +1,47 @@
 package com.example.demoSites.Services;
 
-import com.example.demoSites.controllers.TestController;
+import com.example.demoSites.controllers.test.CreateTestRequest;
 import com.example.demoSites.models.Answer;
 import com.example.demoSites.models.Question;
 import com.example.demoSites.models.Test;
+import com.example.demoSites.models.Training;
 import com.example.demoSites.repo.QuestionRepository;
 import com.example.demoSites.repo.TestRepository;
-import com.example.demoSites.repo.TestRepository2;
+import com.example.demoSites.repo.TrainingRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 
 @Service
+@Slf4j
 public class TestService {
     @Autowired
     private TestRepository testRepository;
     @Autowired
     private QuestionRepository questionRepository;
+    @Autowired
+    private TrainingRepository trainingRepository;
 
-
-    public void addTest(Test test){
+    /*Можно создавать сущность в запросе указывая только ее id, речь про training*/
+    public boolean addTest(CreateTestRequest createTestRequest){
+        Training training = trainingRepository.findById(createTestRequest.getTrainingId()).orElse(null);
+        if (training == null){
+            log.warn("Training with id = {} was not found ", createTestRequest.getTrainingId());
+            return false;
+        }
+        Test test = convertToTest(createTestRequest, training);
         testRepository.save(test);
+        return true;
     }
-
+    private Test convertToTest(CreateTestRequest createTestRequest, Training training){
+        Test test = new Test();
+        test.setTitle(createTestRequest.getTitle());
+        test.setQuestions(createTestRequest.getQuestions());
+        test.setTraining(training);
+        return test;
+    }
     public Test getTestById(Long id){
         return testRepository.findById(id).orElse(null);
     }

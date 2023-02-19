@@ -8,13 +8,16 @@ import java.util.List;
 @Entity
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String question;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Answer> answers;
+    @ManyToOne
+    @JoinColumn(name = "test_id", nullable = false)
+    private Test test;
 
     public Question() {
     }

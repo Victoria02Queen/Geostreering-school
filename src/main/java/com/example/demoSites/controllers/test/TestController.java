@@ -1,4 +1,4 @@
-package com.example.demoSites.controllers;
+package com.example.demoSites.controllers.test;
 
 import com.example.demoSites.Services.TestService;
 import com.example.demoSites.models.Test;
@@ -15,8 +15,8 @@ public class TestController {
     TestService testService;
 
     @PostMapping("/test/add")
-    public void addTest(@RequestBody Test test){
-        testService.addTest(test);
+    public void addTest(@RequestBody CreateTestRequest createTestRequest){
+        testService.addTest(createTestRequest);
     }
     @GetMapping("/test/get")
     public Test getTestById(@RequestParam Long id){
