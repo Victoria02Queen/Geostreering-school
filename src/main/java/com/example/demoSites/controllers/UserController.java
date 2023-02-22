@@ -19,7 +19,15 @@ public class UserController {
     public UserRepository userRepository;
     @GetMapping("/user/get")
     public User findUserById(@RequestParam Long id){
-        return userRepository.findById(id).orElse(null);
+        User user = userRepository.findById(id).orElse(null);
+        System.out.println(user.getActiveTraining());
+        return user;
+    }
+    @GetMapping("/user/getByLogin")
+    public User userByLogin(@RequestParam String login){
+        User user = userRepository.findByLogin(login);
+        System.out.println(user.getActiveTraining());
+        return user;
     }
 
     public void finishTraining(@RequestBody FinishTrainingRequest finishTrainingRequest){

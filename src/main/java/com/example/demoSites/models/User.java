@@ -11,15 +11,15 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String fullName;
     private String position;
     private String organization;
+    private String login;
     private String phone;
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Training> trainingList;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<Training> trainingList;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
@@ -27,7 +27,7 @@ public class User {
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-            name = "Completed_Training",
+            name = "completed_training",
             joinColumns = { @JoinColumn(name = "user_id") },
             inverseJoinColumns = { @JoinColumn(name = "training_id") }
     )
@@ -35,7 +35,7 @@ public class User {
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-            name = "Active_Training",
+            name = "active_training",
             joinColumns = { @JoinColumn(name = "user_id") },
             inverseJoinColumns = { @JoinColumn(name = "training_id") }
     )
@@ -100,12 +100,29 @@ public class User {
         this.role = role;
     }
 
-    public List<Training> getTrainingList() {
-        return trainingList;
+    public Set<Training> getCompletedTrainings() {
+        return completedTrainings;
     }
 
-    public void setTrainingList(List<Training> trainingList) {
-        this.trainingList = trainingList;
+    public void setCompletedTrainings(Set<Training> completedTrainings) {
+        this.completedTrainings = completedTrainings;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+
+    public Set<Training> getActiveTraining() {
+        return activeTraining;
+    }
+
+    public void setActiveTraining(Set<Training> activeTraining) {
+        this.activeTraining = activeTraining;
     }
 
     @Override
@@ -117,8 +134,9 @@ public class User {
                 ", organization='" + organization + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
-                ", trainingList=" + trainingList +
+                ", role=" + role +
+                ", completedTrainings=" + completedTrainings +
+                ", activeTraining=" + activeTraining +
                 '}';
     }
 }

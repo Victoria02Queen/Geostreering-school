@@ -8,7 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
+    User findByLogin(String login);
 
-//    @Query("FROM User WHERE id = :id")
-//    List<User> findUserById(Long id);
 }

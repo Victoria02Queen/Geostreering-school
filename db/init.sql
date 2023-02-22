@@ -4,26 +4,26 @@ use db_training;
 CREATE TABLE role
 (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    roleName VARCHAR(255)
+    name VARCHAR(255)
 );
-INSERT INTO role (roleName) VALUES
+INSERT INTO role (name) VALUES
     ('admin'),
     ('listener');
 
 CREATE TABLE user
 (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    fullName VARCHAR(255),
+    full_name VARCHAR(255),
     position VARCHAR(255),
     organization VARCHAR(255),
     phone VARCHAR(255),
     email VARCHAR(255),
-    login VARCHAR(255),
+    login VARCHAR(255) UNIQUE,
     password VARCHAR(255),
     role_id INT,
     FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE SET NULL ON UPDATE CASCADE
 );
-INSERT INTO user(fullName, position, organization, phone, email, login, password, role_id) VALUES
+INSERT INTO user(full_name, position, organization, phone, email, login, password, role_id) VALUES
     ('Ivanov',
     'boss',
     'OOO IGIRGI',
@@ -40,8 +40,7 @@ INSERT INTO user(fullName, position, organization, phone, email, login, password
     'hayev@mail.ru',
     'login2',
     '111',
-    2
-    );
+    2);
 
 CREATE TABLE training
 (
@@ -129,26 +128,26 @@ INSERT INTO answer(title, correct, question_id) VALUES
    2
    );
 
-CREATE TABLE Completed_Traininig (
+CREATE TABLE completed_training (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     training_id INT,
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (training_id) REFERENCES training(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-INSERT INTO Completed_Traininig (user_id, training_id) VALUES
+INSERT INTO completed_training (user_id, training_id) VALUES
    (
     2,
     1
    );
-CREATE TABLE Active_Training (
+CREATE TABLE active_training (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     training_id INT,
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (training_id) REFERENCES training(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-INSERT INTO Active_Training (user_id, training_id) VALUES
+INSERT INTO active_training (user_id, training_id) VALUES
     (
         2,
         2
