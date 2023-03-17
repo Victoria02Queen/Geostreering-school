@@ -15,6 +15,7 @@ public class User {
     private String position;
     private String organization;
     private String login;
+    private String password;
     private String phone;
     private String email;
 
@@ -106,6 +107,14 @@ public class User {
 
     public void setCompletedTrainings(Set<Training> completedTrainings) {
         this.completedTrainings = completedTrainings;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getLogin() {
