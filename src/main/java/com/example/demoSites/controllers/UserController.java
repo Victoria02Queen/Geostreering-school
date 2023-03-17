@@ -1,5 +1,6 @@
 package com.example.demoSites.controllers;
 
+import com.example.demoSites.Services.UserService;
 import com.example.demoSites.controllers.request.FinishTrainingRequest;
 import com.example.demoSites.models.User;
 import com.example.demoSites.repo.UserRepository;
@@ -16,16 +17,18 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    public UserRepository userRepository;
+    private UserRepository userRepository;
+    @Autowired
+    private UserService userService;
     @GetMapping("/user/get")
     public User findUserById(@RequestParam Long id){
-        User user = userRepository.findById(id).orElse(null);
+        User user = userService.findUserById(id);
         System.out.println(user.getActiveTraining());
         return user;
     }
     @GetMapping("/user/getByLogin")
-    public User userByLogin(@RequestParam String login){
-        User user = userRepository.findByLogin(login);
+    public User findUserByLogin(@RequestParam String login){
+        User user = userService.findUserByLogin(login);
         System.out.println(user.getActiveTraining());
         return user;
     }

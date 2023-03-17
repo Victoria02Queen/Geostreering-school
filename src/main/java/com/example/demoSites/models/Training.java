@@ -3,6 +3,8 @@ package com.example.demoSites.models;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 public class Training {
     @Id
@@ -80,4 +82,16 @@ public class Training {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Training training = (Training) o;
+        return Objects.equals(id, training.id) && Objects.equals(title, training.title) && Objects.equals(description, training.description) && Objects.equals(trainer, training.trainer) && Objects.equals(countPlace, training.countPlace) && Objects.equals(test, training.test);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, description, trainer, countPlace, test);
+    }
 }

@@ -65,43 +65,37 @@ public class AdminController {
     }
     @GetMapping("/blog/{id}")
     public String trainingDetails(@PathVariable(value = "id") long id, Model model){
-        if(!trainingRepository.existsById(id)){
+       Training training = trainingService.getById(id);
+        if(training == null){
             return "redirect:/admin/blog";
         }
-        Optional<Training> training = trainingRepository.findById(id);
         ArrayList<Training> resTrain = new ArrayList<>();
-        training.ifPresent(resTrain::add);
+        resTrain.add(training);
         model.addAttribute("training",resTrain);
         return "blogDetails";
     }
 
     @GetMapping("/blog/{id}/edit")
-    public String blogEdit(@PathVariable(value = "id") long id, Model model){
-        if(!trainingRepository.existsById(id)){
+    public String editTrainingPage(@PathVariable(value = "id") long id, Model model){
+        Training training = trainingService.getById(id);
+        if(training == null){
             return "redirect:/admin/blog";
         }
-        Optional<Training> training = trainingRepository.findById(id);
         ArrayList<Training> resTrain = new ArrayList<>();
-        training.ifPresent(resTrain::add);
+        resTrain.add(training);
         model.addAttribute("training",resTrain);
         return "blogEdit";
     }
 
     @PostMapping("/blog/{id}/edit")
-    public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String description, @RequestParam String trainer, @RequestParam Integer countPlace, Model model){
-       Training training = trainingRepository.findById(id).orElseThrow();
-       training.setTitle(title);
-       training.setDescription(description);
-       training.setTrainer(trainer);
-       training.setCountPlace(countPlace);
-       trainingRepository.save(training);
+    public String editTraining(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String description, @RequestParam String trainer, @RequestParam Integer countPlace, Model model){
+       trainingService.editTraining(id, title, description, trainer, countPlace);
         return "redirect:/admin/blog";
     }
 
     @PostMapping("/blog/{id}/remove")
-    public String blogPostDelete(@PathVariable(value = "id") long id, Model model){
-        Training training = trainingRepository.findById(id).orElseThrow();
-        trainingRepository.delete(training);
+    public String deleteTraining(@PathVariable(value = "id") long id, Model model){
+        trainingService.deleteTraining(id);
         return "redirect:/admin/blog";
     }
 }

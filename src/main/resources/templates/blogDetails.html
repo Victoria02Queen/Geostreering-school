@@ -13,7 +13,6 @@
         <p th:text="${el.description}" ></p>
         <p th:text="${el.trainer}" ></p>
         <a th:href="'/admin/blog/' + ${el.id} + '/edit'" class="btn btn-light">Редактировать</a>
-
         <form th:action="'/admin/blog/' + ${el.id} + '/remove'" method="post"><br>
             <button class="btn btn-light" type="submit">Удалить</button>
         </form>

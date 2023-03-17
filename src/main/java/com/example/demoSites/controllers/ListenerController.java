@@ -1,5 +1,6 @@
 package com.example.demoSites.controllers;
 
+import com.example.demoSites.Services.TrainingService;
 import com.example.demoSites.models.Training;
 import com.example.demoSites.repo.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ListenerController {
     @Autowired
     public TrainingRepository trainingRepository;
+    @Autowired
+    public TrainingService trainingService;
     @GetMapping("/training")
-    public String training(Model model){
-        Iterable<Training> trainings = trainingRepository.findAll();
+    public String getAllTrainings(Model model){
+        Iterable<Training> trainings = trainingService.getAllTrainings();
         model.addAttribute("trainings",trainings);
         return "TrainingByListener";
     }
