@@ -42,6 +42,19 @@ public class User {
     )
     private Set<Training> activeTraining;
 
+    public User(String fullName, String position, String organization, String login, String password, String phone, String email, Role role, Set<Training> completedTrainings, Set<Training> activeTraining) {
+        this.fullName = fullName;
+        this.position = position;
+        this.organization = organization;
+        this.login = login;
+        this.password = password;
+        this.phone = phone;
+        this.email = email;
+        this.role = role;
+        this.completedTrainings = completedTrainings;
+        this.activeTraining = activeTraining;
+    }
+
     public User() {
     }
 

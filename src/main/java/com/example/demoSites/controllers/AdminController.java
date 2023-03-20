@@ -89,7 +89,9 @@ public class AdminController {
 
     @PostMapping("/blog/{id}/edit")
     public String editTraining(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String description, @RequestParam String trainer, @RequestParam Integer countPlace, Model model){
-       trainingService.editTraining(id, title, description, trainer, countPlace);
+        Training training = new Training(title,description,trainer,countPlace);
+        training.setId(id);
+       trainingService.editTraining(training);
         return "redirect:/admin/blog";
     }
 

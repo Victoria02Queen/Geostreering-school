@@ -13,6 +13,7 @@ public class CompletedTraining {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Training> training;
 
+
     public CompletedTraining() {
     }
 

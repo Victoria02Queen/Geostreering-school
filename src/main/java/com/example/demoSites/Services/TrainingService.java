@@ -5,6 +5,7 @@ import com.example.demoSites.repo.TrainingRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,18 +25,21 @@ public class TrainingService {
         return training.orElse(null);
     }
 
-    public void editTraining(long id, String title, String description, String trainer, int countPlace){
-        Training training = trainingRepository.findById(id).orElseThrow();
-        training.setTitle(title);
-        training.setDescription(description);
-        training.setTrainer(trainer);
-        training.setCountPlace(countPlace);
+    public void editTraining(Training training){
+//        Training training = trainingRepository.findById(id).orElseThrow();
+//        training.setTitle(title);
+//        training.setDescription(description);
+//        training.setTrainer(trainer);
+//        training.setCountPlace(countPlace);
+
         trainingRepository.save(training);
     }
     public void deleteTraining(long id){
         trainingRepository.deleteById(id);
     }
-    public Iterable<Training> getAllTrainings(){
-        return trainingRepository.findAll();
+    public List<Training> getAllTrainings(){
+        ArrayList<Training> trainings = new ArrayList<>();
+        trainingRepository.findAll().forEach(trainings :: add);
+        return trainings;
     }
 }

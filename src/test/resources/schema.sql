@@ -20,8 +20,9 @@ CREATE TABLE `user`
     role_id INT,
     FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE SET NULL ON UPDATE CASCADE
 );
-INSERT INTO `user`(full_name, position, organization, phone, email, login, password, role_id) VALUES
-                                                                                                ('Ivanov',
+INSERT INTO `user`(id,full_name, position, organization, phone, email, login, password, role_id) VALUES
+                                                                                                (10000,
+                                                                                                     'Ivanov',
                                                                                                  'boss',
                                                                                                  'OOO IGIRGI',
                                                                                                  '89288763123',
@@ -29,7 +30,7 @@ INSERT INTO `user`(full_name, position, organization, phone, email, login, passw
                                                                                                  'login1',
                                                                                                  '123',
                                                                                                  1),
-                                                                                                (
+                                                                                                (10001,
                                                                                                     'Petrov',
                                                                                                     'worker',
                                                                                                     'OOO igirgi',
@@ -134,7 +135,7 @@ CREATE TABLE `completed_training` (
 );
 INSERT INTO `completed_training` (user_id, training_id) VALUES
     (
-        2,
+        10000,
         1
     );
 CREATE TABLE `active_training` (
@@ -146,7 +147,7 @@ CREATE TABLE `active_training` (
 );
 INSERT INTO `active_training` (user_id, training_id) VALUES
     (
-        2,
+        10001,
         2
     );
 
