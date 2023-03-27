@@ -5,6 +5,7 @@ import com.example.demoSites.models.Answer;
 import com.example.demoSites.models.Question;
 import com.example.demoSites.models.Test;
 import com.example.demoSites.models.Training;
+import com.example.demoSites.repo.AnswerRepository;
 import com.example.demoSites.repo.QuestionRepository;
 import com.example.demoSites.repo.TestRepository;
 import com.example.demoSites.repo.TrainingRepository;
@@ -25,6 +26,8 @@ public class TestService {
     private QuestionRepository questionRepository;
     @Autowired
     private TrainingRepository trainingRepository;
+    @Autowired
+    private AnswerRepository answerRepository;
 
     /*Можно создавать сущность в запросе указывая только ее id, речь про training*/
     public Test addTest(CreateTestRequest createTestRequest){
@@ -49,6 +52,7 @@ public class TestService {
 
         questionRepository.saveAll(test.getQuestions());
         // here
+        answerRepository.saveAll(answers);
         return null;
     }
     private Test convertToTest(CreateTestRequest createTestRequest, Training training){
