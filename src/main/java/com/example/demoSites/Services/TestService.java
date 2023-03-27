@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -33,10 +35,15 @@ public class TestService {
         }
         Test test = convertToTest(createTestRequest, training);
         Test saveTest = testRepository.save(test);
+
+        List<Answer> answers = new ArrayList<>();
+
         for (Question question: test.getQuestions()){
             question.setTest(saveTest);
+            answers.addAll(question.getAnswers());
             question.setAnswers(null);
         }
+
         questionRepository.saveAll(test.getQuestions());
 
         return null;
