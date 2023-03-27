@@ -9,8 +9,18 @@ public class Answer {
     private Long id;
     private String title;
     private Boolean correct;
-
+    @ManyToOne
+    @JoinColumn(name = "question_id", nullable = false)
+    private Question question;
     public Answer() {
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
     public Long getId() {

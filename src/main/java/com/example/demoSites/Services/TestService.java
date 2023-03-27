@@ -25,15 +25,21 @@ public class TestService {
     private TrainingRepository trainingRepository;
 
     /*Можно создавать сущность в запросе указывая только ее id, речь про training*/
-    public boolean addTest(CreateTestRequest createTestRequest){
+    public Test addTest(CreateTestRequest createTestRequest){
         Training training = trainingRepository.findById(createTestRequest.getTrainingId()).orElse(null);
         if (training == null){
             log.warn("Training with id = {} was not found ", createTestRequest.getTrainingId());
-            return false;
+            throw new RuntimeException("training is null");
         }
         Test test = convertToTest(createTestRequest, training);
-        testRepository.save(test);
-        return true;
+        Test saveTest = testRepository.save(test);
+        for (Question question: test.getQuestions()){
+            question.setTest(saveTest);
+            question.setAnswers(null);
+        }
+        questionRepository.saveAll(test.getQuestions());
+
+        return null;
     }
     private Test convertToTest(CreateTestRequest createTestRequest, Training training){
         Test test = new Test();

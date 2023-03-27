@@ -26,6 +26,14 @@ public class Question {
         return id;
     }
 
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
