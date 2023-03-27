@@ -40,12 +40,15 @@ public class TestService {
 
         for (Question question: test.getQuestions()){
             question.setTest(saveTest);
-            answers.addAll(question.getAnswers());
+            List<Answer> localAnswers = question.getAnswers();
             question.setAnswers(null);
+            Question savedQuestion = questionRepository.save(question);
+            localAnswers.forEach(i -> i.setQuestion(savedQuestion));
+            answers.addAll(localAnswers);
         }
 
         questionRepository.saveAll(test.getQuestions());
-
+        // here
         return null;
     }
     private Test convertToTest(CreateTestRequest createTestRequest, Training training){
