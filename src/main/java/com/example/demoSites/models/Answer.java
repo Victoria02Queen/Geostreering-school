@@ -1,5 +1,7 @@
 package com.example.demoSites.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,6 +13,8 @@ public class Answer {
     private Boolean correct;
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
+    @JsonIgnore
+    @JsonBackReference
     private Question question;
     public Answer() {
     }

@@ -23,13 +23,11 @@ public class UserController {
     @GetMapping("/user/get")
     public User findUserById(@RequestParam Long id){
         User user = userService.findUserById(id);
-        System.out.println(user.getActiveTraining());
         return user;
     }
     @GetMapping("/user/getByLogin")
     public User findUserByLogin(@RequestParam String login){
         User user = userService.findUserByLogin(login);
-        System.out.println(user.getActiveTraining());
         return user;
     }
 

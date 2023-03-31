@@ -1,6 +1,8 @@
 package com.example.demoSites.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -19,6 +21,8 @@ public class Training {
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "test_id", referencedColumnName = "id")
     @OneToOne(mappedBy = "training")
+    @JsonIgnore
+    @JsonBackReference
     private Test test;
 
     public Training(String title, String description, String trainer, Integer countPlace) {
@@ -38,6 +42,14 @@ public class Training {
 
 
     public Training() {
+    }
+
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
     }
 
     public String getTitle() {
