@@ -23,4 +23,8 @@ public class ListenerController {
         model.addAttribute("trainings",trainings);
         return "TrainingByListener";
     }
+    @GetMapping("/home")
+    public String getShowListener(Model model){
+        return "Listener";
+    }
 }

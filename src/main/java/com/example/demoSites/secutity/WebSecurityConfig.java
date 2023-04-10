@@ -1,35 +1,37 @@
-//package com.example.demoSites.secutity;
+package com.example.demoSites.secutity;
 
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.config.Customizer;
-//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
-//import org.springframework.security.core.userdetails.User;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-//import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
-//@Configuration
-//@EnableWebSecurity
-//public class WebSecurityConfig  {
+@Configuration
+@EnableWebSecurity
+@ConditionalOnProperty(name = "spring.security.enable", havingValue = "true")
+public class WebSecurityConfig  {
 
-//    public WebSecurityConfig(AuthenticationManagerBuilder managerBuilder, UserDetailService userDetailService) throws Exception {
-//        managerBuilder.userDetailsService(userDetailService);
-//    }
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity.csrf().disable()
-//                .authorizeHttpRequests(authorize -> authorize
-//                        .requestMatchers("/admin/**").hasRole("ADMIN")
-//                        .requestMatchers("/listener/**").hasRole("LISTENER")
-//        )
-//                .formLogin(Customizer.withDefaults());
-//        return httpSecurity.build();
+    public WebSecurityConfig(AuthenticationManagerBuilder managerBuilder, UserDetailService userDetailService) throws Exception {
+        managerBuilder.userDetailsService(userDetailService);
+    }
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.csrf().disable()
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/listener/**").hasRole("LISTENER")
+        )
+                .formLogin(formLogin -> formLogin.successHandler(new CustomAuthenticationSuccessHandler()));
+        return httpSecurity.build();
 //        httpSecurity
 //                .csrf().disable()
 //                .authorizeHttpRequests()
@@ -61,7 +63,7 @@
 //                .logoutSuccessUrl("/");
 //
 //        return httpSecurity.build();
-//    }
+    }
 
 //    @Bean
 //    public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
@@ -79,8 +81,8 @@
 //                .build();
 //        return new InMemoryUserDetailsManager(user1, user2, admin);
 //    }
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}

@@ -76,6 +76,7 @@ public class TestService {
     }
 
     public Iterable<Test> getAll(){
+
         return testRepository.findAll();
     }
 
