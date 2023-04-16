@@ -29,8 +29,15 @@ public class WebSecurityConfig  {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/listener/**").hasRole("LISTENER")
+                        .requestMatchers("/anonymous/**").permitAll()
         )
-                .formLogin(formLogin -> formLogin.successHandler(new CustomAuthenticationSuccessHandler()));
+                .formLogin(formLogin ->{
+                    formLogin.successHandler(new CustomAuthenticationSuccessHandler());
+                    formLogin.loginPage("/anonymous/login");
+                    formLogin.usernameParameter("username");
+                    formLogin.passwordParameter("password");
+                    formLogin.loginProcessingUrl("/perform-login");
+                }) ;
         return httpSecurity.build();
 //        httpSecurity
 //                .csrf().disable()

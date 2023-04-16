@@ -21,16 +21,7 @@ public class AdminController {
     public TrainingService trainingService;
 
 
-    @GetMapping("/logIn")
-    public String logIn(Model model) {
-        model.addAttribute("title","Страница авторизации");
-        return "logIn";
-    }
-    @GetMapping("/signUp")
-    public String signUp(Model model) {
-        model.addAttribute("title","Страница регистрации");
-        return "signUp";
-    }
+
     @GetMapping("/home")
     public String home(Model model) {
         model.addAttribute("title","Главная страница");

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -94,22 +94,17 @@
 </style>
 <div class="login-box">
     <h2>Вход в систему</h2>
-    <form>
+    <form th:action="@{/perform-login}" method="post">
         <div class="user-box">
-            <input type="text" name="" required="">
+            <input type="text" name="username" required="">
             <label>Login</label>
         </div>
         <div class="user-box">
-            <input type="password" name="" required="">
+            <input type="password" name="password" required="">
             <label>Password</label>
         </div>
-        <a href="/admin/home">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Submit
-        </a>
+        <button type="submit" class="btn btn-light" > войти</button>
+
     </form>
 </div>
 </body>

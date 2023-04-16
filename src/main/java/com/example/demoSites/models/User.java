@@ -42,6 +42,7 @@ public class User {
     )
     private Set<Training> activeTraining;
 
+
     public User(String fullName, String position, String organization, String login, String password, String phone, String email, Role role, Set<Training> completedTrainings, Set<Training> activeTraining) {
         this.fullName = fullName;
         this.position = position;
