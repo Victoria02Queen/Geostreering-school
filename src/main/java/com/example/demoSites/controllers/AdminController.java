@@ -2,7 +2,9 @@ package com.example.demoSites.controllers;
 
 
 import com.example.demoSites.Services.TrainingService;
+import com.example.demoSites.models.Answer;
 import com.example.demoSites.models.Training;
+import com.example.demoSites.repo.AnswerRepository;
 import com.example.demoSites.repo.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,8 @@ public class AdminController {
     @Autowired
     public TrainingRepository trainingRepository;
     @Autowired
+    public AnswerRepository answerRepository;
+    @Autowired
     public TrainingService trainingService;
 
 
@@ -26,6 +30,11 @@ public class AdminController {
     public String home(Model model) {
         model.addAttribute("title","Главная страница");
         return "home";
+    }
+    @GetMapping("/statistics")
+    public String statistics(Model model) {
+
+        return "statisticsAdmin";
     }
     @GetMapping("/blog")
     public String blogMain(Model model){

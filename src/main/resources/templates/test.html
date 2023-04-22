@@ -52,12 +52,14 @@
                 </tfoot>
                 <tbody >
                 <tr>
-                    <div id="q" width="100%">
+                    <div id="q" width="100%" th:each="el :${trainings}"  >
                         <div id="q1">
                             <div id="service">
                                 <div id="qtext1" class="quest_area">
                                     Текст вопроса :
-                                    <br><textarea style="width: 646px; height:60px;" name="question1"></textarea><br><br>
+                                    <br><textarea style="width: 646px; height:60px;" name="question1">
+
+                                </textarea><br><br>
                                 </div>
                                 <div id="qanswer1_1" class="line">
                                     Вариант ответа:

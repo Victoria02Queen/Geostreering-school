@@ -16,7 +16,6 @@ public class TestController {
 
     @PostMapping("/test/add")
     public void addTest(@RequestBody CreateTestRequest createTestRequest){
-
         testService.addTest(createTestRequest);
     }
     @GetMapping("/test/get")
@@ -40,7 +39,7 @@ public class TestController {
      */
     @PostMapping("/test/checkAnswers")
     public int checkAnswers(@RequestBody Map<Long, Long> answers){
-        return testService.checkTest(answers);
+        return testService.checkTest(answers, 0,0);
     }
 
 }

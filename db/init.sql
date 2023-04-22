@@ -132,6 +132,7 @@ CREATE TABLE completed_training (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     training_id INT,
+    count_of_correct_answer INT,
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (training_id) REFERENCES training(id) ON DELETE CASCADE ON UPDATE CASCADE
 );

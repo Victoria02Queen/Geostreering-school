@@ -1,10 +1,8 @@
 package com.example.demoSites.Services;
 
 import com.example.demoSites.controllers.test.CreateTestRequest;
-import com.example.demoSites.models.Answer;
-import com.example.demoSites.models.Question;
-import com.example.demoSites.models.Test;
-import com.example.demoSites.models.Training;
+import com.example.demoSites.controllers.test.TestDao;
+import com.example.demoSites.models.*;
 import com.example.demoSites.repo.AnswerRepository;
 import com.example.demoSites.repo.QuestionRepository;
 import com.example.demoSites.repo.TestRepository;
@@ -28,6 +26,8 @@ public class TestService {
     private TrainingRepository trainingRepository;
     @Autowired
     private AnswerRepository answerRepository;
+    @Autowired
+    private TestDao testDao;
 
     /*Можно создавать сущность в запросе указывая только ее id, речь про training*/
     public Test addTest(CreateTestRequest createTestRequest){
@@ -88,7 +88,7 @@ public class TestService {
         }
         return -1;
     }
-    public int checkTest(Map<Long, Long> answers){
+    public int checkTest(Map<Long, Long> answers, long userId, long trainingId){
         int countCorrectAnswer = 0;
         for (Map.Entry<Long, Long> entry : answers.entrySet()){
             Question question = questionRepository.findById(entry.getKey()).orElse(null);
@@ -98,6 +98,7 @@ public class TestService {
                 countCorrectAnswer++;
             }
         }
+        testDao.addCompletedTrainingFosUser(userId, trainingId, countCorrectAnswer);
         return countCorrectAnswer;
     }
 }
