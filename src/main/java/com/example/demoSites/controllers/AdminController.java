@@ -1,7 +1,9 @@
 package com.example.demoSites.controllers;
 
 
+import com.example.demoSites.Services.TestService;
 import com.example.demoSites.Services.TrainingService;
+import com.example.demoSites.controllers.test.CompletedTrainingDto;
 import com.example.demoSites.models.Answer;
 import com.example.demoSites.models.Training;
 import com.example.demoSites.repo.AnswerRepository;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -23,6 +26,8 @@ public class AdminController {
     public AnswerRepository answerRepository;
     @Autowired
     public TrainingService trainingService;
+    @Autowired
+    public TestService testService;
 
 
 
@@ -33,7 +38,8 @@ public class AdminController {
     }
     @GetMapping("/statistics")
     public String statistics(Model model) {
-
+        List<CompletedTrainingDto> completedTrainingDtos = testService.getAllCompletedTraining();
+        model.addAttribute("completedTrainingDtos", completedTrainingDtos);
         return "statisticsAdmin";
     }
     @GetMapping("/blog")

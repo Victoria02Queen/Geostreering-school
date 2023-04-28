@@ -122,7 +122,7 @@
 <section class="contact-form">
 
     <div>
-            <table class="table_adaptive_gray" th:each="el :${trainings}">
+            <table class="table_adaptive_gray">
                 <thead>
                 <tr>
                     <th>ФИО</th>
@@ -131,22 +131,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td data-label="ФИО"> Смирнов Иван Васильевич</td>
-                    <td data-label="Тренинг" th:text="${el.title}"></td>
-                    <td data-label="Количество баллов">dsfa</td>
+                <tr th:each="el :${completedTrainingDtos}">
+                    <td data-label="ФИО"   th:text="${el.userName}" > </td>
+                    <td data-label="Тренинг" th:text="${el.trainingName}"></td>
+                    <td data-label="Количество баллов" th:text="${el.countCorrectAnswer}"></td>
 
                 </tr>
-                <tr>
-                    <td data-label="ФИО">Владимиров Пётр Васильевич</td>
-                    <td data-label="Тренинг"></td>
-                    <td data-label="Количество баллов">dsf</td>
-                </tr>
-                <tr>
-                    <td data-label="ФИО">Воротцов Игорь Витальевич</td>
-                    <td data-label="Тренинг"></td>
-                    <td data-label="Количество баллов">kjn</td>
-                </tr>
+<!--                <tr>-->
+<!--                    <td data-label="ФИО">/td>-->
+<!--                    <td data-label="Тренинг"></td>-->
+<!--                    <td data-label="Количество баллов"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td data-label="ФИО"></td>-->
+<!--                    <td data-label="Тренинг"></td>-->
+<!--                    <td data-label="Количество баллов"></td>-->
+<!--                </tr>-->
                 </tbody>
             </table>
     </div>

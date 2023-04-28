@@ -1,5 +1,6 @@
 package com.example.demoSites.Services;
 
+import com.example.demoSites.controllers.test.CompletedTrainingDto;
 import com.example.demoSites.controllers.test.CreateTestRequest;
 import com.example.demoSites.controllers.test.TestDao;
 import com.example.demoSites.models.*;
@@ -100,5 +101,9 @@ public class TestService {
         }
         testDao.addCompletedTrainingFosUser(userId, trainingId, countCorrectAnswer);
         return countCorrectAnswer;
+    }
+
+    public List<CompletedTrainingDto> getAllCompletedTraining(){
+        return testDao.getAllCompletedTraining();
     }
 }
