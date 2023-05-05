@@ -1,0 +1,230 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head itemscope="" itemtype="http://schema.org/WebSite">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title itemprop="name">Аккаунт</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<header>
+    <div>
+        <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" fill="currentColor" class="bi bi-globe-asia-australia" viewBox="0 0 16 16" role="img">
+                    <title>GEOSTEERING SCHOOL</title>
+                    <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016zm6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                    <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
+                </svg>
+                <span class="fs-4">GEOSTEERING SCHOOL</span>
+            </a>
+
+            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                <a class="me-3 py-2 text-dark text-decoration-none" href="/listener/home">Главная</a>
+                <a class="me-3 py-2 text-dark text-decoration-none" href="/listener/account">Аккаунт</a>
+                <a class="me-3 py-2 text-dark text-decoration-none" href="/">Тестирования</a>
+                <a class="me-3 py-2 text-dark text-decoration-none" href="/listener/training">Тренинги</a>
+                <a class="me-3 py-2 text-dark text-decoration-none" href="">Выход</a>
+            </nav>
+        </div>
+    </div>
+</header>
+<body>
+<div id="snippetContent">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>-->
+    <section class="section about-section gray-bg" id="about">
+        <div class="container">
+            <div class="row align-items-center flex-row-reverse">
+                <div class="col-lg-6">
+                    <div class="about-text go-to" >
+                        <h3 class="dark-color">Аккаунт</h3>
+                        <h6 class="theme-color lead"></h6>
+                        <div class="row about-list" th:each="el :${users}">
+                            <div class="col-md-6">
+                                <div class="media">
+                                    <label>ФИО</label>
+                                    <p th:text="${el.fullName}"></p>
+                                </div>
+                                <div class="media">
+                                    <label>Должность</label>
+                                    <p th:text="${el.position}" ></p>
+                                </div>
+                                <div class="media">
+                                    <label>Организация</label>
+                                    <p  th:text="${el.organization}" ></p>
+                                </div>
+                                <div class="media">
+                                    <label>Электронная почта</label>
+                                    <p  th:text="${el.email}"></p>
+                                </div>
+                                <div class="media">
+                                    <label>телефон</label>
+                                    <p th:text="${el.phone}" ></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-avatar">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="counter">
+                <div class="row">
+                    <div class="col-6 col-lg-3">
+                        <div class="count-data text-center">
+                            <h6 class="count h2" data-to="500" data-speed="500">500</h6>
+                            <p class="m-0px font-w-600">Пройдено тренингов</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="count-data text-center">
+                            <h6 class="count h2" data-to="150" data-speed="150">150</h6>
+                            <p class="m-0px font-w-600">Пройдено тестирований</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="count-data text-center">
+                            <h6 class="count h2" data-to="850" data-speed="850">850</h6>
+                            <p class="m-0px font-w-600">Регистрация на тренинги</p>
+                        </div>
+                    </div>
+                                        <div class="col-6 col-lg-3">
+                                        <div class="count-data text-center">
+                                            <h6 class="count h2" data-to="190" data-speed="190">190</h6>
+                                            <p class="m-0px font-w-600">Получено сертификатов</p>
+                                        </div>
+                                        </div>
+                </div>
+            </div>
+        </div>
+</div>
+</section>
+
+<style type="text/css">/*<![CDATA[*/
+body{
+    color: #6F8BA4;
+    margin-top:20px;
+}
+.section {
+    padding: 100px 0;
+    position: relative;
+}
+.gray-bg {
+    background-color: #f5f5f5;
+}
+img {
+    max-width: 100%;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+/* About Me
+---------------------*/
+.about-text h3 {
+    font-size: 45px;
+    font-weight: 700;
+    margin: 0 0 6px;
+}
+@media (max-width: 767px) {
+    .about-text h3 {
+        font-size: 35px;
+    }
+}
+.about-text h6 {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+@media (max-width: 767px) {
+    .about-text h6 {
+        font-size: 18px;
+    }
+}
+.about-text p {
+    font-size: 18px;
+    max-width: 450px;
+}
+.about-text p mark {
+    font-weight: 600;
+    color: #20247b;
+}
+
+.about-list {
+    padding-top: 10px;
+}
+.about-list .media {
+    padding: 8px 0;
+}
+.about-list label {
+    color: #5c5d65;
+    font-weight: 600;
+    width: 88px;
+    margin: 0;
+    position: relative;
+}
+.about-list label:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 11px;
+    width: 1px;
+    height: 12px;
+    background: #20247b;
+    -moz-transform: rotate(15deg);
+    -o-transform: rotate(15deg);
+    -ms-transform: rotate(15deg);
+    -webkit-transform: rotate(15deg);
+    transform: rotate(15deg);
+    margin: auto;
+    opacity: 0.5;
+}
+.about-list p {
+    margin-left: 45px;
+    font-size: 15px;
+}
+
+@media (max-width: 991px) {
+    .about-avatar {
+        margin-top: 30px;
+    }
+}
+
+.about-section .counter {
+    padding: 22px 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+}
+.about-section .counter .count-data {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.about-section .counter .count {
+    font-weight: 700;
+    color: #5c5d65;
+    margin: 0 0 5px;
+}
+.about-section .counter p {
+    font-weight: 600;
+    margin: 0;
+}
+mark {
+    background-image: linear-gradient(rgba(252, 83, 86, 0.6), rgba(252, 83, 86, 0.6));
+    background-size: 100% 3px;
+    background-repeat: no-repeat;
+    background-position: 0 bottom;
+    background-color: transparent;
+    padding: 0;
+    color: currentColor;
+}
+.theme-color {
+    color: #fc5356;
+}
+.dark-color {
+    color: #5c5d65;
+}/*]]>*/
+</style>
+</body>
+</html>

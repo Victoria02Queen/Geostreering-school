@@ -13,21 +13,95 @@
         line-height: 60%!important;
         font-family: 'IBM Plex Sans',Arial,sans-serif;
     }
+    details{
+        display:block;
+        background: #fff;
+        width:1000px;
+        box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        border-radius: 8px;
+        overflow:hidden;
+        margin-bottom: 1.5rem;
+    }
+    summary::-webkit-details-marker{display:none;}
+    summary::-moz-list-bullet{list-style-type:none;}
+    summary::marker{display:none;}
+    summary {
+        display:block;
+        padding: .3em 1em .3em .9em;
+        border-bottom: 1px solid #e2e8f0;
+        font-size:1.4em;
+        cursor: pointer;
+        position: relative;
+    }
+    summary:before {
+        top: .4em;
+        right: .3em;
+        color: transparent;
+        background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTYuNTkgOC41OUwxMiAxMy4xNyA3LjQxIDguNTkgNiAxMGw2IDYgNi02eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=") no-repeat 50% 50% / 1em 1em;
+        width: 1em;
+        height: 1em;
+        content: "";
+        position: absolute;
+        transition: transform .5s;
+    }
+    details[open] > summary:before {
+        transform: scale(1,-1);
+    }
+    summary ~ * {
+        padding: 0 1em 10px 1.4em;
+    }
+    details[open] summary ~ *{
+        animation: sweep .5s ease-in-out;
+    }
+    @keyframes sweep {
+        0%    {opacity: 0;}
+        100%  {opacity: 1;}
+    }
+    summary:focus {
+        outline:0;
+        box-shadow: inset 0 0 1px rgba(0,0,0,0.3), inset 0 0 2px rgba(0,0,0,0.3);
+    }
 </style>
 <div class="container mt-5">
     <h1>Тренинги</h1>
-    <div th:each="el :${trainings}" class="alert alert-secondary mt-2">
-        <h3 th:text="${el.title}"></h3><br>
-        <p th:text="${el.description}" ></p><br>
-        <h5>Тренер:</h5>
-        <p th:text="${el.trainer}" ></p>
-        <h5>Количество свободных мест:</h5>
-        <p th:text="${el.countPlace}" ></p>
-        <a th:href="'/admin/blog/' + ${el.id}" class="btn btn-light">Подробнее</a>
-        <a th:href="'/admin/blog/addTest'" class="btn btn-light">Добавить тестирование</a>
+
+    <div th:each="el :${trainings}">
+
+        <details open>
+            <summary th:text="${el.title}" ></summary>
+            <p  th:text="${el.description}"></p>
+            <h5>Тренер:</h5>
+            <p th:text="${el.trainer}" > цуыца</p>
+            <h5>Количество свободных мест:</h5>
+            <p th:text="${el.countPlace}" > цувцыуа</p>
+            <a th:href="'/admin/blog/' + ${el.id}" class="btn btn-light">Подробнее</a>
+            <a th:href="'/admin/blog/addTest'" class="btn btn-light">Добавить тестирование</a>
+        </details>
+<!--    <div th:each="el :${trainings}" class="alert alert-secondary mt-2">-->
+<!--        <h3 th:text="${el.title}"></h3><br>-->
+<!--        <p th:text="${el.description}" ></p><br>-->
+<!--        <h5>Тренер:</h5>-->
+<!--        <p th:text="${el.trainer}" ></p>-->
+<!--        <h5>Количество свободных мест:</h5>-->
+<!--        <p th:text="${el.countPlace}" ></p>-->
+<!--        <a th:href="'/admin/blog/' + ${el.id}" class="btn btn-light">Подробнее</a>-->
+<!--        <a th:href="'/admin/blog/addTest'" class="btn btn-light">Добавить тестирование</a>-->
     </div>
 </div>
 
-
+<script>
+    var details = document.querySelectorAll("details");
+    for(i=0;i<details.length;i++) {
+        details[i].addEventListener("toggle", accordion);
+    }
+    function accordion(event) {
+        if (!event.target.open) return;
+        var details = event.target.parentNode.children;
+        for(i=0;i<details.length;i++) {
+            if (details[i].tagName !== "DETAILS" || !details[i].hasAttribute('open') || event.target === details[i]) continue;
+            details[i].removeAttribute("open");
+        }
+    }
+</script>
 </body>
 </html>

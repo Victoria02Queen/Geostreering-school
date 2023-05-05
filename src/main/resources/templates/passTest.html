@@ -59,40 +59,19 @@
 </style>
 <section class="contact-form">
     <div class="wrapper">
-        <form name="test" method="post">
-            <div class="onetest" name="onetest" th:each="el :${questions}">
-
+        <form name="test" method="post" action="/listener/checkAnswers">
+            <input type="text" th:value="${trainingId}" name="trainingId" hidden>
+            <div class="onetest" name="onetest" th:each="question :${questions}">
                 <br>
-
                 <fieldset>
-                    <legend th:text="${el.getQuestion()}"></legend>
-
-                    <div>
-                        <input type="radio" id="huey" name="drone" value="huey"
-                               checked>
-                        <label for="huey">Huey</label>
-                    </div>
-
-                    <div>
-                        <input type="radio" id="dewey" name="drone" value="dewey">
-                        <label for="dewey">Dewey</label>
-                    </div>
-
-                    <div>
-                        <input type="radio" id="louie" name="drone" value="louie">
-                        <label for="louie">Louie</label>
+                    <legend th:text="${question.getQuestion()}"></legend>
+                    <div th:each="answer :${question.getAnswers}">
+                        <input type="radio" th:id="${answer.getId()}" th:name="${question.getId()}" th:value="${answer.getId()}">
+                        <label th:text="${answer.getTitle()}"> </label>
                     </div>
                 </fieldset>
-
-<!--                <input type="radio" name="Q1"> вар1-->
-<!--                <span name="aspan" class="aspan"></span><br>-->
-<!--                <input type="radio" name="Q1">-->
-<!--                <span name="aspan" class="aspan"> вар2</span><br>-->
-<!--                <input type="radio" name="Q1">-->
-<!--                <span name="aspan" class="aspan"> вар3</span><br>-->
-<!--                <input type="radio" name="Q1">-->
-<!--                <span name="aspan" class="aspan"> вар4</span><br>-->
             </div>
+            <button type="submit">Завершить</button>
         </form>
     </div>
 </section>

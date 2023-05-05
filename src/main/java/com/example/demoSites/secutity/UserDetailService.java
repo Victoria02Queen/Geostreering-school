@@ -30,5 +30,6 @@ public class UserDetailService implements UserDetailsService {
                 .roles(user.getRole().getName().toUpperCase(Locale.ROOT))
                 .build();
         return userDetails;
+
     }
 }

@@ -1,9 +1,13 @@
 package com.example.demoSites.controllers.test;
 
 import com.example.demoSites.Services.TestService;
+import com.example.demoSites.Services.UserService;
 import com.example.demoSites.models.Test;
+import com.example.demoSites.models.User;
 import com.example.demoSites.repo.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -12,7 +16,9 @@ import java.util.Map;
 @RestController
 public class TestController {
     @Autowired
-    TestService testService;
+    private TestService testService;
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/test/add")
     public void addTest(@RequestBody CreateTestRequest createTestRequest){
@@ -32,14 +38,6 @@ public class TestController {
         testService.updateTest(test);
     }
 
-    /**
-     *
-     * @param answers - questionId : answerId
-     * @return
-     */
-    @PostMapping("/test/checkAnswers")
-    public int checkAnswers(@RequestBody Map<Long, Long> answers){
-        return testService.checkTest(answers, 0,0);
-    }
+
 
 }

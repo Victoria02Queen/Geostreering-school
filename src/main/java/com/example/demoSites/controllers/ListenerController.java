@@ -2,18 +2,26 @@ package com.example.demoSites.controllers;
 
 import com.example.demoSites.Services.TestService;
 import com.example.demoSites.Services.TrainingService;
+import com.example.demoSites.Services.UserService;
 import com.example.demoSites.models.Question;
 import com.example.demoSites.models.Test;
 import com.example.demoSites.models.Training;
+import com.example.demoSites.models.User;
 import com.example.demoSites.repo.TrainingRepository;
+import com.example.demoSites.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/listener")
@@ -24,6 +32,10 @@ public class ListenerController {
     public TrainingService trainingService;
     @Autowired
     public TestService testService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
     @GetMapping("/training")
     public String getAllTrainings(Model model){
         Iterable<Training> trainings = trainingService.getAllTrainings();
@@ -32,13 +44,27 @@ public class ListenerController {
     }
     @GetMapping("/account")
     public String getShowAccount(Model model){
-        return "account";
+        User users = userService.findUserById(2l);
+        model.addAttribute("users",users);
+        return "accProba";
     }
     @GetMapping("/home")
     public String getShowListener(Model model){
         return "Listener";
     }
 
+    /**
+     *
+     * @param answers - questionId : answerId
+     * @return
+     */
+    @PostMapping("/checkAnswers")
+    public int checkAnswers(@RequestParam Map<Long, Long> answers, @RequestParam Long trainingId){
+        answers.remove("trainingId");
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userService.findUserByLogin(userDetails.getUsername());
+        return testService.checkTest(answers, user.getId(),trainingId);
+    }
     @GetMapping("/passTest")
     public String getTest(Model model){
         Test test = testService.getTestById(16l);
@@ -47,11 +73,13 @@ public class ListenerController {
             questionDtoList.add(convertToQuestionDto(test.getQuestions().get(i), i + 1));
         }
         model.addAttribute("questions", questionDtoList);
+        model.addAttribute("trainingId", test.getTraining().getId());
         return "passTest";
     }
 
     private QuestionDto convertToQuestionDto(Question question, int position){
         QuestionDto questionDto = new QuestionDto();
+        questionDto.setId(question.getId());
         questionDto.setQuestion(question.getQuestion());
         questionDto.setAnswers(question.getAnswers());
         questionDto.setTest(question.getTest());

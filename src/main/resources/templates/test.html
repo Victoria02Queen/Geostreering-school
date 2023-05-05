@@ -52,29 +52,28 @@
                 </tfoot>
                 <tbody >
                 <tr>
-                    <div id="q" width="100%" th:each="el :${trainings}"  >
+<!--                    //в div, что ниже было вставлено вот это th:each="el :${trainings}", с ним форма не отражается...???-->
+                    <div id="q" width="100%" >
                         <div id="q1">
                             <div id="service">
                                 <div id="qtext1" class="quest_area">
                                     Текст вопроса :
-                                    <br><textarea style="width: 646px; height:60px;" name="question1">
-
-                                </textarea><br><br>
+                                    <br><textarea style="width: 646px; height:60px;" name="question1"></textarea><br><br>
                                 </div>
                                 <div id="qanswer1_1" class="line">
                                     Вариант ответа:
                                     <input type="text" name="answer1_1" style="width: 409px;">
-                                    &nbsp;
+                                    &nbsp;&nbsp;
                                 </div>
                                 <div id="qanswer1_2" class="line">
                                     Вариант ответа:
                                     <input type="text" name="answer1_2" style="width: 409px;">
-                                    &nbsp;
+                                    &nbsp;&nbsp;
                                 </div>
                                 <div id="qanswer1_3" class="line">
                                     Вариант ответа:
                                     <input type="text" name="answer1_3" style="width: 409px;">
-                                    &nbsp;
+                                    &nbsp;&nbsp;
                                 </div>
                             </div>
                         </div>
@@ -85,11 +84,7 @@
         </form>
     </div>
 </section>
-<div class="results">
-    <h2>Form JSON</h2>
-    <pre></pre>
-</div>
-<div th:insert="blocks/footer :: footer "></div>
+
 <script>
     var i = 0;
 
