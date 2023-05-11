@@ -3,6 +3,7 @@ package com.example.demoSites.controllers;
 import com.example.demoSites.Services.TestService;
 import com.example.demoSites.Services.TrainingService;
 import com.example.demoSites.Services.UserService;
+import com.example.demoSites.controllers.test.TestDao;
 import com.example.demoSites.models.Question;
 import com.example.demoSites.models.Test;
 import com.example.demoSites.models.Training;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +38,8 @@ public class ListenerController {
     private UserService userService;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TestDao testDao;
     @GetMapping("/training")
     public String getAllTrainings(Model model){
         Iterable<Training> trainings = trainingService.getAllTrainings();
@@ -59,15 +63,21 @@ public class ListenerController {
      * @return
      */
     @PostMapping("/checkAnswers")
-    public int checkAnswers(@RequestParam Map<Long, Long> answers, @RequestParam Long trainingId){
+    public String checkAnswers(@RequestParam Map<String, String> answers, @RequestParam Long trainingId, Model model){
         answers.remove("trainingId");
+        Map<Long, Long> longAnswers = new HashMap<>();
+        for (Map.Entry<String, String> entry : answers.entrySet()){
+            longAnswers.put(Long.parseLong(entry.getKey()), Long.parseLong(entry.getValue()));
+        }
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userService.findUserByLogin(userDetails.getUsername());
-        return testService.checkTest(answers, user.getId(),trainingId);
+        int results= testService.checkTest(longAnswers, user.getId(),trainingId);
+        model.addAttribute("results", results);
+        return "resultTest";
     }
     @GetMapping("/passTest")
     public String getTest(Model model){
-        Test test = testService.getTestById(16l);
+        Test test = testService.getTestById(150l);
         List<QuestionDto> questionDtoList = new ArrayList<>();
         for (int i = 0; i < test.getQuestions().size() ;i++){
             questionDtoList.add(convertToQuestionDto(test.getQuestions().get(i), i + 1));

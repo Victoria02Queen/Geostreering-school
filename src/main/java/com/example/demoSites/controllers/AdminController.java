@@ -54,6 +54,7 @@ public class AdminController {
     }
     @GetMapping("/blog/addTest")
     public String blogAddTest(Model model){
+
         return "test";
     }
 

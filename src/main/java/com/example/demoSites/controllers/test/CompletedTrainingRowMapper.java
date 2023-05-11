@@ -12,6 +12,7 @@ public class CompletedTrainingRowMapper implements RowMapper<CompletedTrainingDt
         completedTrainingDto.setUserName(rs.getString("userName"));
         completedTrainingDto.setTrainingName(rs.getString("trainingName"));
         completedTrainingDto.setCountCorrectAnswer(rs.getInt("countCorrectAnswer"));
+        completedTrainingDto.setCompletedDate(rs.getTimestamp("completedDate"));
         return completedTrainingDto;
     }
 }

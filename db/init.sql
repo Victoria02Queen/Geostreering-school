@@ -68,10 +68,11 @@ CREATE TABLE test
     training_id INT,
     FOREIGN KEY (training_id) REFERENCES training(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-INSERT INTO Test(title, training_id) VALUES
+INSERT INTO Test(title, training_id, id) VALUES
     (
     'Геология суши',
-    1
+    1,
+     150
     );
 CREATE TABLE question
 (
@@ -83,17 +84,17 @@ CREATE TABLE question
 INSERT INTO question(question, test_id) VALUES
     (
     'Какого цвета неба?',
-    1
+    150
     ),
     (
     'Сколько углов в квадрате?',
-    1
+    150
     );
 CREATE TABLE answer
 (
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255),
-    correct BOOL,
+    correct BOOL NOT NULL,
     question_id INT,
     FOREIGN KEY (question_id) REFERENCES question(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -133,6 +134,7 @@ CREATE TABLE completed_training (
     user_id INT,
     training_id INT,
     count_of_correct_answer INT,
+    completedDate TIMESTAMP DEFAULT now(),
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (training_id) REFERENCES training(id) ON DELETE CASCADE ON UPDATE CASCADE
 );

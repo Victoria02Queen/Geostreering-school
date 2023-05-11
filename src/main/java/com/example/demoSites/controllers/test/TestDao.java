@@ -32,7 +32,7 @@ public class TestDao {
     }
 
     public List<CompletedTrainingDto> getAllCompletedTraining(){
-        String sql = "SELECT user.full_name AS userName, training.title AS trainingName, count_of_correct_answer AS countCorrectAnswer " +
+        String sql = "SELECT user.full_name AS userName, training.title AS trainingName, count_of_correct_answer AS countCorrectAnswer, completedDate " +
                 "FROM completed_training INNER JOIN user ON completed_training.user_id = user.id " +
                 "INNER JOIN training ON training.id  = completed_training.training_id ";
 
