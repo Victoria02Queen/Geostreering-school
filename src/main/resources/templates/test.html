@@ -46,7 +46,7 @@
                     <td>
                         <button id="addmore" type="button" class="myButton" style="margin:auto;height: 30px; width:208px;background-color:#f6f6f9;color:#1976d2;" onclick="duplicate()">Добавить вопрос</button>
                         <button id="save" type="button"  style="margin:auto;height: 30px; width:208px;background-color:#f6f6f9;color:#1976d2;" onclick="duplicateAnswer()">Добавить вариант ответа</button>
-                        <button type="submit" style="margin:auto;height: 30px; width:208px;background-color:#f6f6f9;color:#1976d2;"> Отправить</button>
+                        <button id="send" type="submit" style="margin:auto;height: 30px; width:208px;background-color:#f6f6f9;color:#1976d2;"> Отправить</button>
                     </td>
                 </tr>
                 </tfoot>
@@ -88,9 +88,9 @@
     var i = 0;
 
     class Answer{
-        constructor(title, isCorrect) {
+        constructor(title, correct) {
             this.title = title;
-            this.isCorrect = isCorrect;
+            this.correct = correct;
         }
     }
     class Question {
@@ -157,10 +157,33 @@
             // console.log(key, value)
         });
         questions.push(question);
-        // console.log(questions);
-
         const test = new Test("Title",1, questions);
         console.log(JSON.stringify(test));
+
+        fetch('/admin/test/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(test)
+        })
+            .then(response => {
+                if (response.ok) {
+
+                    console.log('Questions successfully sent');
+                    // do something else, if needed
+                    window.location.href="/admin/blog";
+                    // alert("добавлено");
+
+                        } else {
+                    console.log(`Error sending questions: ${response.status}`);
+                }
+            })
+            .catch(error => {
+                console.error('Error sending questions:', error);
+            });
+        // console.log(questions);
+
 
     }
 
