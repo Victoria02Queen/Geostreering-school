@@ -1,8 +1,10 @@
 package com.example.demoSites.secutity;
 
+import com.example.demoSites.Services.UserService;
 import com.example.demoSites.models.User;
 import com.example.demoSites.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,6 +19,8 @@ public class UserDetailService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
@@ -31,5 +35,10 @@ public class UserDetailService implements UserDetailsService {
                 .build();
         return userDetails;
 
+    }
+    public User getCurrentUser(){
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userService.findUserByLogin(userDetails.getUsername());
+        return user;
     }
 }

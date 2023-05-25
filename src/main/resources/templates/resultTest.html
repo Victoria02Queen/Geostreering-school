@@ -1,11 +1,123 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
+            rel="stylesheet"
+    />
+
 </head>
-<body>
-<p th:text="${results}"></p>
-<a class="me-3 py-2 text-dark text-decoration-none" href="/listener/home">Выход</a>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        background-color: #f6f6f8;
+        font-family: Poppins;
+    }
+    .container{
+
+    }
+    /* success */
+    .wrapper-success {
+        margin: 120px;
+    }
+    .wrapper-success .card {
+        width: 720px;
+        height: 120px;
+        background-color: #fff;
+        padding: 10px 20px;
+        margin:10px auto 5px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border-left: 5px solid #49d761;
+        border-radius: 3px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+    .wrapper-success .card .subject {
+        margin-right: 180px;
+    }
+    .wrapper-success .card .subject p {
+        color: #909092;
+    }
+    .wrapper-success .card .icon {
+        font-size: 28px;
+        color: #49d761;
+    }
+    .wrapper-success .card .icon-times {
+        font-size: 28px;
+        color: #c3c2c7;
+        cursor: pointer;
+    }
+
+    .btsn{
+        font-family: Roboto, sans-serif;
+        font-weight: 0;
+        font-size: 14px;
+        color: #151414;
+        background-color: #ecfcdc;
+        padding: 10px 30px;
+        border: solid #467a3a 2px;
+        box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+        border-radius: 50px;
+        transition : 1000ms;
+        transform: translateY(0);
+        display: flex;
+        margin-right: 10px;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+    .btsn:hover{
+        transition : 1000ms;
+        padding: 10px 50px;
+        transform : translateY(-0px);
+        background-color: #fff;
+        color: #3baf37;
+        border: solid 2px #c0f58f;
+    }
+</style>
+<div class="container">
+    <!-- section-success -->
+    <div class="wrapper-success">
+        <div class="card">
+            <div class="icon"><i class="fas fa-check-circle"></i></div>
+            <div class="subject">
+                <h3>Ваш результат:</h3>
+                <p th:text="${results}"></p>
+                <div  class="btnv-group">
+                    <a type="submit" class="btsn" href="/listener/home">Выйти</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- section-success -->
+</div>
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<p th:text="${results}"></p>-->
+<!--<a class="me-3 py-2 text-dark text-decoration-none" href="/listener/home">Выход</a>-->
+<!--</body>-->
+<!--</html>-->

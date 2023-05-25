@@ -1,6 +1,7 @@
 package com.example.demoSites.controllers.test;
 
 import com.example.demoSites.models.CompletedTraining;
+import com.example.demoSites.models.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -38,5 +39,11 @@ public class TestDao {
 
         return jdbcTemplate.query(sql, new CompletedTrainingRowMapper());
 
+    }
+    public List<Test> getAllActiveTestByUserId(long id){
+        String sql = "SELECT test.id, test.title FROM active_training INNER JOIN test ON active_training.training_id = test.training_id WHERE active_training.user_id = :userId";
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", id);
+        return jdbcTemplate.query(sql, map, new ActiveTestRowMapper());
     }
 }

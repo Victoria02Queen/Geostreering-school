@@ -61,58 +61,54 @@
         outline:0;
         box-shadow: inset 0 0 1px rgba(0,0,0,0.3), inset 0 0 2px rgba(0,0,0,0.3);
     }
-    .btsn{
-        font-family: Roboto, sans-serif;
-        font-weight: 0;
-        font-size: 14px;
-        color: #fff;
-        background-color: #c5ccd4;
-        padding: 10px 30px;
-        border: solid #7a7e82 2px;
-        box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
-        border-radius: 50px;
-        transition : 1000ms;
-        transform: translateY(0);
+
+    .tbBlofx {
+        width: 100%;
         display: flex;
-        margin-right: 10px;
-        flex-direction: row;
-        align-items: center;
-        cursor: pointer;
+        justify-content: space-between;
+        min-height: 60px;
+        border-radius: 5px;
+        box-shadow: 2px 2px 3px #888;
+        overflow: hidden;
+        margin-top: 20px;
     }
-    .btsn:hover{
-        transition : 1000ms;
-        padding: 10px 50px;
-        transform : translateY(-0px);
-        background-color: #fff;
-        color: #f4a261;
-        border: solid 2px #e9c46a;
+    .tbMain {
+        background: #ededf5;
+        width: 100%;
+        padding: 0px 5px 0px 5px;
+        font-size: 1.2em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .tbTitle {
+        padding: 8px 5px 8px 5px;
+        color: #666;
+    }
+    .tbTitle a {
+        color: #292929;
+    }
+    .tbButton {
+        background: #8BABCC;
+        color: #fff;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 160px;
     }
 </style>
 <div class="container mt-5">
 
-    <div th:each="el :${trainings}" >
-
-        <details open >
-            <summary th:text="${el.title}"></summary>
-            <p  th:text="${el.description}"></p>
-            <h5>Тренер:</h5>
-            <p th:text="${el.trainer}" > </p>
-            <h5>Количество свободных мест:</h5>
-            <p th:text="${el.countPlace}" ></p>
-            <div  class="btn-group">
-            <a th:href="'/admin/blog/' + ${el.id}" class="btsn">Подробнее</a>
-            <a th:href="'/admin/blog/addTest'" class="btsn">Добавить тестирование</a>
+    <div class="tbBlofx" th:each="test :${tests}"  >
+        <div class="tbMain" >
+            <div class="tbTitle">
+                <a th:text="${test.title}" ></a>
             </div>
-        </details>
-<!--    <div th:each="el :${trainings}" class="alert alert-secondary mt-2">-->
-<!--        <h3 th:text="${el.title}"></h3><br>-->
-<!--        <p th:text="${el.description}" ></p><br>-->
-<!--        <h5>Тренер:</h5>-->
-<!--        <p th:text="${el.trainer}" ></p>-->
-<!--        <h5>Количество свободных мест:</h5>-->
-<!--        <p th:text="${el.countPlace}" ></p>-->
-<!--        <a th:href="'/admin/blog/' + ${el.id}" class="btn btn-light">Подробнее</a>-->
-<!--        <a th:href="'/admin/blog/addTest'" class="btn btn-light">Добавить тестирование</a>-->
+        </div>
+        <div class="tbButton">
+            <a th:href="'/listener/passTest'">ПРОЙТИ</a>
+        </div>
     </div>
 </div>
 

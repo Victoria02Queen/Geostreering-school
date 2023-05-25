@@ -106,4 +106,7 @@ public class TestService {
     public List<CompletedTrainingDto> getAllCompletedTraining(){
         return testDao.getAllCompletedTraining();
     }
+    public List<Test> getAllActiveTestByUserId(long userId){
+        return testDao.getAllActiveTestByUserId(userId);
+    }
 }

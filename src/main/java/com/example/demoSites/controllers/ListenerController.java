@@ -8,17 +8,16 @@ import com.example.demoSites.models.Question;
 import com.example.demoSites.models.Test;
 import com.example.demoSites.models.Training;
 import com.example.demoSites.models.User;
+import com.example.demoSites.repo.TestRepository;
 import com.example.demoSites.repo.TrainingRepository;
 import com.example.demoSites.repo.UserRepository;
+import com.example.demoSites.secutity.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,12 +38,24 @@ public class ListenerController {
     @Autowired
     private UserRepository userRepository;
     @Autowired
+    private TestRepository testRepository;
+    @Autowired
     private TestDao testDao;
+    @Autowired
+    private UserDetailService userDetailService;
     @GetMapping("/training")
     public String getAllTrainings(Model model){
         Iterable<Training> trainings = trainingService.getAllTrainings();
         model.addAttribute("trainings",trainings);
         return "TrainingByListener";
+    }
+
+    @GetMapping("/test")
+    public String getAllTest(Model model){
+        User user = userDetailService.getCurrentUser();
+        Iterable<Test> tests = testService.getAllActiveTestByUserId(user.getId());
+        model.addAttribute("tests",tests);
+        return "startTest";
     }
     @GetMapping("/account")
     public String getShowAccount(Model model){
@@ -69,15 +80,14 @@ public class ListenerController {
         for (Map.Entry<String, String> entry : answers.entrySet()){
             longAnswers.put(Long.parseLong(entry.getKey()), Long.parseLong(entry.getValue()));
         }
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userService.findUserByLogin(userDetails.getUsername());
+        User user = userDetailService.getCurrentUser();
         int results= testService.checkTest(longAnswers, user.getId(),trainingId);
         model.addAttribute("results", results);
         return "resultTest";
     }
     @GetMapping("/passTest")
     public String getTest(Model model){
-        Test test = testService.getTestById(150l);
+        Test test = testService.getTestById(150L);
         List<QuestionDto> questionDtoList = new ArrayList<>();
         for (int i = 0; i < test.getQuestions().size() ;i++){
             questionDtoList.add(convertToQuestionDto(test.getQuestions().get(i), i + 1));
@@ -86,6 +96,18 @@ public class ListenerController {
         model.addAttribute("trainingId", test.getTraining().getId());
         return "passTest";
     }
+//    @GetMapping("/blog/{id}/edit")
+//    public String editTestPage(@PathVariable(value = "id") long id, Model model){
+//        Test test = testService.getTestById(id);
+//        Training training = trainingService.getById(id);
+//        if(test == null){
+//            return "redirect:/listener/home";
+//        }
+//        ArrayList<Test> resTest = new ArrayList<>();
+//        resTest.add(test);
+//        model.addAttribute("test",resTest);
+//        return "passTest";
+//    }
 
     private QuestionDto convertToQuestionDto(Question question, int position){
         QuestionDto questionDto = new QuestionDto();

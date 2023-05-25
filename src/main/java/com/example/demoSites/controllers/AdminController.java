@@ -4,7 +4,9 @@ package com.example.demoSites.controllers;
 import com.example.demoSites.Services.TestService;
 import com.example.demoSites.Services.TrainingService;
 import com.example.demoSites.controllers.test.CompletedTrainingDto;
+import com.example.demoSites.controllers.test.CreateTestRequest;
 import com.example.demoSites.models.Answer;
+import com.example.demoSites.models.Test;
 import com.example.demoSites.models.Training;
 import com.example.demoSites.repo.AnswerRepository;
 import com.example.demoSites.repo.TrainingRepository;
@@ -57,7 +59,16 @@ public class AdminController {
 
         return "test";
     }
+    @PostMapping("/test/add")
+    public String addTest(@RequestBody CreateTestRequest createTestRequest, Model model){
+        testService.addTest(createTestRequest);
+        return "blogMain";
+    }
+    @GetMapping("/blog/addContent")
+    public String blogAddContent(Model model){
 
+        return "addContent";
+    }
     @PostMapping("/blog/add")
     public String addTraining(@RequestParam String title, @RequestParam String description, @RequestParam String trainer, @RequestParam Integer countPlace, Model model){
         Training training = new Training(title, description, trainer, countPlace);

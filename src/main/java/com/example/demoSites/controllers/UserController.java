@@ -34,18 +34,6 @@ public class UserController {
         return user;
     }
 
-//    /**
-//     *
-//     * @param answers - questionId : answerId
-//     * @return
-//     */
-//    @PostMapping("/checkAnswers")
-//    public int checkAnswers(@RequestParam Map<Long, Long> answers, @RequestParam Long trainingId){
-//        answers.remove("trainingId");
-//        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        User user = userService.findUserByLogin(userDetails.getUsername());
-//        return testService.checkTest(answers, user.getId(),trainingId);
-//    }
     public void finishTraining(@RequestBody FinishTrainingRequest finishTrainingRequest){
 
     }
