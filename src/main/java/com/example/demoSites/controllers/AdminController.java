@@ -38,6 +38,7 @@ public class AdminController {
         model.addAttribute("title","Главная страница");
         return "home";
     }
+
     @GetMapping("/statistics")
     public String statistics(Model model) {
         List<CompletedTrainingDto> completedTrainingDtos = testService.getAllCompletedTraining();

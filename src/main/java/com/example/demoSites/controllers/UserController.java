@@ -33,7 +33,6 @@ public class UserController {
         User user = userService.findUserByLogin(login);
         return user;
     }
-
     public void finishTraining(@RequestBody FinishTrainingRequest finishTrainingRequest){
 
     }

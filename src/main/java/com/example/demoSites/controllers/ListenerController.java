@@ -43,6 +43,12 @@ public class ListenerController {
     private TestDao testDao;
     @Autowired
     private UserDetailService userDetailService;
+
+    @GetMapping("/logOut")
+    public String logOut() {
+        SecurityContextHolder.clearContext();
+        return "redirect:/anonymous/login";
+    }
     @GetMapping("/training")
     public String getAllTrainings(Model model){
         Iterable<Training> trainings = trainingService.getAllTrainings();
@@ -96,18 +102,6 @@ public class ListenerController {
         model.addAttribute("trainingId", test.getTraining().getId());
         return "passTest";
     }
-//    @GetMapping("/blog/{id}/edit")
-//    public String editTestPage(@PathVariable(value = "id") long id, Model model){
-//        Test test = testService.getTestById(id);
-//        Training training = trainingService.getById(id);
-//        if(test == null){
-//            return "redirect:/listener/home";
-//        }
-//        ArrayList<Test> resTest = new ArrayList<>();
-//        resTest.add(test);
-//        model.addAttribute("test",resTest);
-//        return "passTest";
-//    }
 
     private QuestionDto convertToQuestionDto(Question question, int position){
         QuestionDto questionDto = new QuestionDto();
