@@ -86,8 +86,8 @@ public class ListenerController {
         return "resultTest";
     }
     @GetMapping("/passTest")
-    public String getTest(Model model){
-        Test test = testService.getTestById(150L);
+    public String getTest(@RequestParam Long testId, Model model){
+        Test test = testService.getTestById(testId);
         List<QuestionDto> questionDtoList = new ArrayList<>();
         for (int i = 0; i < test.getQuestions().size() ;i++){
             questionDtoList.add(convertToQuestionDto(test.getQuestions().get(i), i + 1));
