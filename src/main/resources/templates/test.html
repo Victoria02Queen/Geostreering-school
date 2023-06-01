@@ -37,6 +37,7 @@
     }
 
 </style>
+<input type="text" name="trainingId" id="trainingId" th:value="${trainingId}" hidden>
 <section class="contact-form">
     <div class="wrapper">
         <form action="/admin/test/add" method="post">
@@ -157,7 +158,8 @@
             // console.log(key, value)
         });
         questions.push(question);
-        const test = new Test("Title",1, questions);
+        var trainingId = Number(document.getElementById("trainingId").value);
+        const test = new Test("Title",trainingId, questions);
         console.log(JSON.stringify(test));
 
         fetch('/admin/test/add', {

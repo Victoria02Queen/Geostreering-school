@@ -15,7 +15,7 @@
     }
     details{
         display:block;
-        background: #fff;
+        background: #e6e6e6;
         width:1000px;
         box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         border-radius: 8px;
@@ -89,31 +89,25 @@
     }
 </style>
 <div class="container mt-5">
-
     <div th:each="el :${trainings}" >
-
-        <details open >
-            <summary th:text="${el.title}"></summary>
-            <p  th:text="${el.description}"></p>
-            <h5>Тренер:</h5>
-            <p th:text="${el.trainer}" > </p>
-            <h5>Количество свободных мест:</h5>
-            <p th:text="${el.countPlace}" ></p>
-            <div  class="btn-group">
-            <a th:href="'/admin/blog/' + ${el.id}" class="btsn">Подробнее</a>
-            <a th:href="'/admin/blog/addTest'" class="btsn">Добавить тестирование</a>
-            </div>
-        </details>
-<!--    <div th:each="el :${trainings}" class="alert alert-secondary mt-2">-->
-<!--        <h3 th:text="${el.title}"></h3><br>-->
-<!--        <p th:text="${el.description}" ></p><br>-->
-<!--        <h5>Тренер:</h5>-->
-<!--        <p th:text="${el.trainer}" ></p>-->
-<!--        <h5>Количество свободных мест:</h5>-->
-<!--        <p th:text="${el.countPlace}" ></p>-->
-<!--        <a th:href="'/admin/blog/' + ${el.id}" class="btn btn-light">Подробнее</a>-->
-<!--        <a th:href="'/admin/blog/addTest'" class="btn btn-light">Добавить тестирование</a>-->
-    </div>
+            <details close >
+                <br>
+                <summary th:text="${el.title}"></summary>
+                <strong>Краткое описание:</strong>
+                <p  th:text="${el.description}"></p>
+                <strong>Тренер:</strong>
+                <p th:text="${el.trainer}" > </p>
+                <strong>Количество свободных мест:</strong>
+                <p th:text="${el.countPlace}" ></p>
+                <div  class="btn-group">
+                    <a th:href="'/admin/blog/' + ${el.id}" class="btsn">Подробнее</a>
+                    <form action="/admin/blog/addTest" method="post">
+                        <input type="text" name="trainingId" th:value="${el.id}" hidden>
+                        <button type="submit" class="btsn" th:if="${el.test == null}">Добавить тестирование</button>
+                    </form>
+                </div>
+            </details>
+        </div>
 </div>
 
 <script>

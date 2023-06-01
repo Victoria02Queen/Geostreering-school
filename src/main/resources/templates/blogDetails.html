@@ -39,7 +39,9 @@
 <div class="container mt-5">
     <div th:each="el :${training}" class="alert alert-secondary mt-2">
         <h3 th:text="${el.title}"></h3>
+        <strong>Краткое описание:</strong>
         <p th:text="${el.description}" ></p>
+        <strong>Тренер:</strong>
         <p th:text="${el.trainer}" ></p>
         <div  class="btn-group">
             <a th:href="'/admin/blog/' + ${el.id} + '/edit'"  class="btsn">Редактировать</a>

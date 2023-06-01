@@ -21,8 +21,9 @@
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
         <a class="me-3 py-2 text-dark text-decoration-none" href="/listener/home">Главная</a>
         <a class="me-3 py-2 text-dark text-decoration-none" href="/listener/account">Аккаунт</a>
-        <a class="me-3 py-2 text-dark text-decoration-none" href="/">Тестирования</a>
+        <a class="me-3 py-2 text-dark text-decoration-none" href="/listener/test">Тестирования</a>
         <a class="me-3 py-2 text-dark text-decoration-none" href="/listener/training">Тренинги</a>
+        <a class="me-3 py-2 text-dark text-decoration-none" href="/listener/">Выход</a>
       </nav>
     </div>
   </div>
@@ -33,17 +34,99 @@
     line-height: 60%!important;
     font-family: 'IBM Plex Sans',Arial,sans-serif;
   }
+  details{
+    display:block;
+    background: #e6e6e6;
+    width:1000px;
+    box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-radius: 8px;
+    overflow:hidden;
+    margin-bottom: 1.5rem;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::-moz-list-bullet{list-style-type:none;}
+  summary::marker{display:none;}
+  summary {
+    display:block;
+    padding: .3em 1em .3em .9em;
+    border-bottom: 1px solid #e2e8f0;
+    font-size:1.4em;
+    cursor: pointer;
+    position: relative;
+  }
+  summary:before {
+    top: .4em;
+    right: .3em;
+    color: transparent;
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTYuNTkgOC41OUwxMiAxMy4xNyA3LjQxIDguNTkgNiAxMGw2IDYgNi02eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=") no-repeat 50% 50% / 1em 1em;
+    width: 1em;
+    height: 1em;
+    content: "";
+    position: absolute;
+    transition: transform .5s;
+  }
+  details[open] > summary:before {
+    transform: scale(1,-1);
+  }
+  summary ~ * {
+    padding: 0 1em 10px 1.4em;
+  }
+  details[open] summary ~ *{
+    animation: sweep .5s ease-in-out;
+  }
+  @keyframes sweep {
+    0%    {opacity: 0;}
+    100%  {opacity: 1;}
+  }
+  summary:focus {
+    outline:0;
+    box-shadow: inset 0 0 1px rgba(0,0,0,0.3), inset 0 0 2px rgba(0,0,0,0.3);
+  }
+  .btsn{
+    font-family: Roboto, sans-serif;
+    font-weight: 0;
+    font-size: 14px;
+    color: #fff;
+    background-color: #c5ccd4;
+    padding: 10px 30px;
+    border: solid #7a7e82 2px;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 50px;
+    transition : 1000ms;
+    transform: translateY(0);
+    display: flex;
+    margin-right: 10px;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+  }
+  .btsn:hover{
+    transition : 1000ms;
+    padding: 10px 50px;
+    transform : translateY(-0px);
+    background-color: #fff;
+    color: #f4a261;
+    border: solid 2px #e9c46a;
+  }
 </style>
 <div class="container mt-5">
-  <h1>Тренинги</h1>
-  <div th:each="el :${trainings}" class="alert alert-secondary mt-2">
-    <h3 th:text="${el.title}"></h3><br>
-    <p th:text="${el.description}" ></p><br>
-    <h5>Тренер:</h5>
-    <p th:text="${el.trainer}" ></p>
-    <h5>Количество свободных мест:</h5>
-    <p th:text="${el.countPlace}" ></p>
-    <a  class="btn btn-light">Присоединиться</a>
+
+  <div th:each="el :${trainings}">
+
+
+    <details close >
+      <br>
+      <summary th:text="${el.title}"></summary>
+      <strong>Краткое описание:</strong>
+      <p  th:text="${el.description}"></p>
+      <strong>Тренер:</strong>
+      <p th:text="${el.trainer}" > </p>
+      <strong>Количество свободных мест:</strong>
+      <p th:text="${el.countPlace}" ></p>
+      <div  class="btn-group">
+      <a class="btsn">Присоединиться</a>
+      </div>
+    </details>
   </div>
 </div>
 

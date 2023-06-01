@@ -54,8 +54,9 @@ public class AdminController {
     public String blogAdd(Model model){
         return "blogAdd";
     }
-    @GetMapping("/blog/addTest")
-    public String blogAddTest(Model model){
+    @PostMapping("/blog/addTest")
+    public String blogAddTest(@RequestParam Long trainingId, Model model){
+        model.addAttribute("trainingId", trainingId);
         return "test";
     }
     @PostMapping("/test/add")
@@ -71,12 +72,12 @@ public class AdminController {
     @PostMapping("/blog/add")
     public String addTraining(@RequestParam String title, @RequestParam String description, @RequestParam String trainer, @RequestParam Integer countPlace, Model model){
         Training training = new Training(title, description, trainer, countPlace);
-        if (training.getTitle().isEmpty()){
-            return "errors";
-        } else {
+//        if (training.getTitle().isEmpty()){
+//            return "errors";
+//        } else {
             trainingService.addTraining(training);
             return "redirect:/admin/blog";
-        }
+//        }
     }
     @GetMapping("/blog/{id}")
     public String trainingDetails(@PathVariable(value = "id") long id, Model model){

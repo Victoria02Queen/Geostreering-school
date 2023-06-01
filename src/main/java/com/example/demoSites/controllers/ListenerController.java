@@ -59,7 +59,7 @@ public class ListenerController {
     }
     @GetMapping("/account")
     public String getShowAccount(Model model){
-        User users = userService.findUserById(2l);
+        User users = userDetailService.getCurrentUser();
         model.addAttribute("users",users);
         return "accProba";
     }
