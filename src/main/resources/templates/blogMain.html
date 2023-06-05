@@ -13,6 +13,9 @@
         line-height: 60%!important;
         font-family: 'IBM Plex Sans',Arial,sans-serif;
     }
+    .mt-5{
+        margin-left: 200px;
+    }
     details{
         display:block;
         background: #e6e6e6;
@@ -84,12 +87,15 @@
         padding: 10px 50px;
         transform : translateY(-0px);
         background-color: #fff;
-        color: #f4a261;
-        border: solid 2px #e9c46a;
+        color: #f9ba48;
+        border: solid 2px #f9ba48;
+    }
+    .train{
+
     }
 </style>
 <div class="container mt-5">
-    <div th:each="el :${trainings}" >
+    <div th:each="el :${trainings}" class="train">
             <details close >
                 <br>
                 <summary th:text="${el.title}"></summary>

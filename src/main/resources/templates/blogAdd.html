@@ -29,8 +29,8 @@
         padding: 10px 50px;
         transform : translateY(-0px);
         background-color: #fff;
-        color: #f4a261;
-        border: solid 2px #e9c46a;
+        color: #f9ba48;
+        border: solid 2px #f9ba48;
     }
 </style>
 <body>
@@ -39,7 +39,8 @@
     <h1>Добавление тренинга</h1><br>
     <form action="/admin/blog/add" method="post">
         <input type="text" name="title" placeholder="Название тренинга" class="form-control" title="Разрешено использовать только пробелы и русские буквы" required pattern="^[А-Яа-яЁё\s]+$" ><br>
-        <textarea name="description" placeholder="Описание тренинга" class="form-control" required ></textarea><br>
+        <textarea name="description" placeholder="Краткое описание тренинга" class="form-control" required ></textarea><br>
+        <textarea name="description" placeholder="Содержание тренинга" class="form-control" required ></textarea><br>
         <input type="text" name="trainer" placeholder="ФИО тренера" class="form-control" required><br>
         <input type="text" name="countPlace" placeholder="Кол-во свободных мест" class="form-control required" title="Разрешено не более 5 цифр"  required pattern="[0-9]{1,5}"><br>
         <button type="submit" class="btsn">Добавить</button>

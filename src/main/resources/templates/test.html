@@ -21,21 +21,46 @@
         background: #f9f9f9;
         /*border: 1px solid #c1c1c1;*/
     }
-    .myButton:hover {
-        background-color:#3d3d3d;
+    /*.myButton:hover {*/
+    /*    background-color:#3d3d3d;*/
+    /*}*/
+    /*.myButton:active {*/
+    /*    position:relative;*/
+    /*    top:1px;*/
+    /*}*/
+    /*button {*/
+    /*    border: 1px solid #1976d2;*/
+    /*    border-radius: 5px;*/
+    /*    height: 22px;*/
+    /*    padding: 3px 3px 3px 3px;*/
+    /*    font-size: 16px;*/
+    /*}*/
+    .btsn{
+        font-family: Roboto, sans-serif;
+        font-weight: 0;
+        font-size: 14px;
+        color: #fff;
+        background-color: #c5ccd4;
+        padding: 10px 30px;
+        border: solid #7a7e82 2px;
+        box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+        border-radius: 50px;
+        transition : 1000ms;
+        transform: translateY(0);
+        display: flex;
+        margin-right: 10px;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
     }
-    .myButton:active {
-        position:relative;
-        top:1px;
+    .btsn:hover{
+        transition : 1000ms;
+        padding: 10px 50px;
+        transform : translateY(-0px);
+        background-color: #fff;
+        color: #f9ba48;
+        border: solid 2px #f9ba48;
     }
-    button {
-        border: 1px solid #1976d2;
-        border-radius: 5px;
-        height: 22px;
-        padding: 3px 3px 3px 3px;
-        font-size: 16px;
-    }
-
 </style>
 <input type="text" name="trainingId" id="trainingId" th:value="${trainingId}" hidden>
 <section class="contact-form">
@@ -45,9 +70,11 @@
                 <tfoot>
                 <tr>
                     <td>
-                        <button id="addmore" type="button" class="myButton" style="margin:auto;height: 30px; width:208px;background-color:#f6f6f9;color:#1976d2;" onclick="duplicate()">Добавить вопрос</button>
-                        <button id="save" type="button"  style="margin:auto;height: 30px; width:208px;background-color:#f6f6f9;color:#1976d2;" onclick="duplicateAnswer()">Добавить вариант ответа</button>
-                        <button id="send" type="submit" style="margin:auto;height: 30px; width:208px;background-color:#f6f6f9;color:#1976d2;"> Отправить</button>
+                        <div  class="btn-group">
+                        <button id="addmore" type="button" class="btsn" style="margin:auto;" onclick="duplicate()">Добавить вопрос</button>
+                        <button id="save" type="button"  class="btsn"  style="margin:auto;" onclick="duplicateAnswer()">Добавить вариант ответа</button>
+                        <button id="send" type="submit"  class="btsn" style="margin:auto;"> Отправить</button>
+                        </div>
                     </td>
                 </tr>
                 </tfoot>
@@ -80,6 +107,7 @@
                     </div>
                 </tr>
                 </tbody>
+                <br>
             </table>
         </form>
     </div>
