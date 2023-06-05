@@ -15,6 +15,7 @@ public class Training {
     private Long id;
     private String title;
     private String description;
+    private String content;
     private String trainer;
     @Column(name = "count_place")
     private Integer countPlace;
@@ -30,6 +31,14 @@ public class Training {
         this.description = description;
         this.trainer = trainer;
         this.countPlace = countPlace;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Integer getCountPlace() {

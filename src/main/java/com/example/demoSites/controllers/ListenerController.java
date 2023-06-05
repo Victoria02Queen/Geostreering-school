@@ -102,7 +102,17 @@ public class ListenerController {
         model.addAttribute("trainingId", test.getTraining().getId());
         return "passTest";
     }
-
+    @GetMapping("/readTraining")
+    public String readTraining(@RequestParam Long trainingId, Model model){
+        Training training = trainingService.getById(trainingId);
+        model.addAttribute("training", training);
+        return "textForTraining";
+    }
+    @PostMapping("/joinTraining")
+    public String joinTraining(@RequestParam Long trainingId, Model model){
+        testDao.addActiveTraining(userDetailService.getCurrentUser().getId(), trainingId);
+        return "redirect:/listener/training";
+    }
     private QuestionDto convertToQuestionDto(Question question, int position){
         QuestionDto questionDto = new QuestionDto();
         questionDto.setId(question.getId());

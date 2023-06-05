@@ -123,9 +123,17 @@
       <p th:text="${el.trainer}" > </p>
       <strong>Количество свободных мест:</strong>
       <p th:text="${el.countPlace}" ></p>
-      <div  class="btn-group">
-      <a class="btsn">Присоединиться</a>
-      </div>
+      <form action="/listener/joinTraining" method="post">
+        <div class="btn-group">
+          <input type="text" name="trainingId" th:value="${el.id}" >
+          <button class="btsn">Присоединиться</button> </div>
+      </form>
+      <form action="/listener/readTraining" method="get">
+        <div class="btn-group">
+          <input type="text" name="trainingId" th:value="${el.id}" hidden>
+          <button class="btsn">Прочитать тренинг</button>
+        </div>
+      </form>
     </details>
   </div>
 </div>

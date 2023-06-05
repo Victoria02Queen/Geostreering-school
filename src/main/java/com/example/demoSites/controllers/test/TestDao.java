@@ -20,7 +20,14 @@ public class TestDao {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
+    public void addActiveTraining(Long userId, Long trainingId){
+        String sql = "INSERT INTO active_training (user_id, training_id) VALUES (:userId, :trainingId)";
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", userId);
+        map.put("trainingId", trainingId);
 
+        jdbcTemplate.update(sql, map);
+    }
 
     public void addCompletedTrainingFosUser(Long userId, Long trainingId, int countOfCorrectAnswer){
         String sql = "INSERT INTO completed_training (user_id, training_id, count_of_correct_answer) VALUES ( :userId, :trainingId, :countOfCorrectAnswer) ";
