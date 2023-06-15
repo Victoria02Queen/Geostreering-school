@@ -65,14 +65,14 @@ public class AdminController {
         testService.addTest(createTestRequest);
         return "blogMain";
     }
-    @GetMapping("/blog/addContent")
-    public String blogAddContent(Model model){
-
-        return "addContent";
-    }
+//    @GetMapping("/blog/addContent")
+//    public String blogAddContent(Model model){
+//
+//        return "addContent";
+//    }
     @PostMapping("/blog/add")
-    public String addTraining(@RequestParam String title, @RequestParam String description, @RequestParam String trainer, @RequestParam Integer countPlace, Model model){
-        Training training = new Training(title, description, trainer, countPlace);
+    public String addTraining(@RequestParam String title, @RequestParam String description, @RequestParam String trainer, @RequestParam Integer countPlace,@RequestParam String content,Model model){
+        Training training = new Training(title, description, content, trainer, countPlace);
 //        if (training.getTitle().isEmpty()){
 //            return "errors";
 //        } else {
@@ -105,10 +105,10 @@ public class AdminController {
     }
 
     @PostMapping("/blog/{id}/edit")
-    public String editTraining(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String description, @RequestParam String trainer, @RequestParam Integer countPlace, Model model){
-        Training training = new Training(title,description,trainer,countPlace);
+    public String editTraining(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String description, @RequestParam String trainer, @RequestParam Integer countPlace, @RequestParam (required = false)String content,Model model){
+        Training training = new Training(title, description,content, trainer, countPlace);
         training.setId(id);
-       trainingService.editTraining(training);
+        trainingService.editTraining(training);
         return "redirect:/admin/blog";
     }
 

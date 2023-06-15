@@ -38,6 +38,7 @@ public class TestService {
             throw new RuntimeException("training is null");
         }
         Test test = convertToTest(createTestRequest, training);
+        test.setTitle(training.getTitle());
         Test saveTest = testRepository.save(test);
 
         List<Answer> answers = new ArrayList<>();

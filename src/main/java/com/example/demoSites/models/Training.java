@@ -26,9 +26,10 @@ public class Training {
     @JsonBackReference
     private Test test;
 
-    public Training(String title, String description, String trainer, Integer countPlace) {
+    public Training(String title, String description, String content, String trainer, Integer countPlace) {
         this.title = title;
         this.description = description;
+        this.content = content;
         this.trainer = trainer;
         this.countPlace = countPlace;
     }

@@ -1,7 +1,9 @@
 package com.example.demoSites.Services;
 
 import com.example.demoSites.models.Training;
+import com.example.demoSites.repo.TrainingDao;
 import com.example.demoSites.repo.TrainingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,6 +13,8 @@ import java.util.Optional;
 @Service
 public class TrainingService {
     private final TrainingRepository trainingRepository;
+    @Autowired
+    private TrainingDao trainingDao;
 
     public TrainingService(TrainingRepository trainingRepository) {
         this.trainingRepository = trainingRepository;
@@ -35,7 +39,7 @@ public class TrainingService {
         trainingRepository.save(training);
     }
     public void deleteTraining(long id){
-        trainingRepository.deleteById(id);
+        trainingDao.deleteTraining(id);
     }
     public List<Training> getAllTrainings(){
         ArrayList<Training> trainings = new ArrayList<>();

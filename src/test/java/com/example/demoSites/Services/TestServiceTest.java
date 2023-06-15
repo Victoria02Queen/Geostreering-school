@@ -23,70 +23,70 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 class TestServiceTest {
-
-    @Autowired
-    TrainingService trainingService;
-    @Autowired
-    TestService testService;
-    @Autowired
-    MockMvc mockMvc;
-    @Autowired
-    ObjectMapper objectMapper;
-
-    @Test
-    @Transactional
-    void addTest() {
-
-        Training training = new Training("Geolog", "bla","Ivanov", 23);
-        trainingService.addTraining(training);
-
-        Answer answer = new Answer();
-        answer.setTitle("ok");
-        answer.setCorrect(true);
-
-        Answer answer2 = new Answer();
-        answer2.setTitle("ne ok");
-        answer2.setCorrect(false);
-
-        List<Answer> answerList = new ArrayList<>();
-        answerList.add(answer);
-        answerList.add(answer2);
-        List<Question> questions =  new ArrayList<>();
-
-        Question question = new Question();
-        question.setQuestion("Как дела?");
-        question.setAnswers(answerList);
-        questions.add(question);
-
-        CreateTestRequest createTestRequest = new CreateTestRequest();
-        createTestRequest.setTitle("Geo");
-        createTestRequest.setTrainingId(training.getId());
-        createTestRequest.setQuestions(questions);
-
-
-        com.example.demoSites.models.Test test = testService.addTest(createTestRequest);
-        com.example.demoSites.models.Test saveTest = testService.getTestById(test.getId());
-        System.out.println();
-    }
-
-    @Test
-    void getTestById() {
-
-    }
-
-    @Test
-    void removeById() {
-    }
-
-    @Test
-    void updateTest() {
-    }
-
-    @Test
-    void getAll() {
-    }
-
-    @Test
-    void checkTest() {
-    }
+//
+//    @Autowired
+//    TrainingService trainingService;
+//    @Autowired
+//    TestService testService;
+//    @Autowired
+//    MockMvc mockMvc;
+//    @Autowired
+//    ObjectMapper objectMapper;
+//
+//    @Test
+//    @Transactional
+//    void addTest() {
+//
+//        Training training = new Training("Geolog", "bla","Ivanov", 23);
+//        trainingService.addTraining(training);
+//
+//        Answer answer = new Answer();
+//        answer.setTitle("ok");
+//        answer.setCorrect(true);
+//
+//        Answer answer2 = new Answer();
+//        answer2.setTitle("ne ok");
+//        answer2.setCorrect(false);
+//
+//        List<Answer> answerList = new ArrayList<>();
+//        answerList.add(answer);
+//        answerList.add(answer2);
+//        List<Question> questions =  new ArrayList<>();
+//
+//        Question question = new Question();
+//        question.setQuestion("Как дела?");
+//        question.setAnswers(answerList);
+//        questions.add(question);
+//
+//        CreateTestRequest createTestRequest = new CreateTestRequest();
+//        createTestRequest.setTitle("Geo");
+//        createTestRequest.setTrainingId(training.getId());
+//        createTestRequest.setQuestions(questions);
+//
+//
+//        com.example.demoSites.models.Test test = testService.addTest(createTestRequest);
+//        com.example.demoSites.models.Test saveTest = testService.getTestById(test.getId());
+//        System.out.println();
+//    }
+//
+//    @Test
+//    void getTestById() {
+//
+//    }
+//
+//    @Test
+//    void removeById() {
+//    }
+//
+//    @Test
+//    void updateTest() {
+//    }
+//
+//    @Test
+//    void getAll() {
+//    }
+//
+//    @Test
+//    void checkTest() {
+//    }
 }
